@@ -1,0 +1,139 @@
+<div id="groupsTabSection">
+    <button id="newGroup" class="btn btn-primary"><i class="fa fa-plus"></i> {{'newGroup'|trans}}</button>
+    <button id="editGroup" class="btn btn-primary disabled"><i class="fa fa-pencil"></i> {{'editGroup'|trans}}</button>
+    <button id="removeGroup" class="btn btn-danger disabled"><i class="fa fa-remove"></i> {{'removeGroup'|trans}}</button>
+    <button id="usersRelatedGroup" class="btn btn-primary disabled"><i class="fa fa-list-alt"></i> {{'usersRelatedGroup'|trans}}</button>
+    
+    <table id="tableGroups" class="table">
+
+    </table>
+    
+    {{ include('AppBundle:Administration/Group/modals:createGroup.html.twig') }}
+    {{ include('AppBundle:Administration/Group/modals:editGroup.html.twig') }}
+    {{ include('AppBundle:Administration/Group/modals:deleteGroup.html.twig') }}
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        // TO CREATE THE Department'S TABLE
+        $('#tableGroups').bootstrapTable({
+            url: "{{path('administration_get_groups_table')}}",
+            pagination:true,
+            search:true,
+            showColumns:true,
+            showRefresh:true,
+            clickToSelect:true,
+            singleSelect:true,
+            showExport:true,
+            exportDataType: 'all',
+            searchAccentNeutralise: true,
+            filterControl: true,
+            stickyHeader:true,
+            stickyHeaderOffsetY:"0px",
+            pageSize: 25,
+            iconsPrefix: 'fa',
+            icons: {
+                refresh: 'fa-refresh',
+                columns: 'fa-th',
+                export: 'fa-download'
+            },
+            columns: [
+                {
+                    field: 'selector',
+                    checkbox: true,
+                    class: 'smallColumn'
+                },
+                {
+                    field: 'id',
+                    title: '{{'ID'|trans}}',
+                    sortable: true,
+                    class: 'smallColumn',
+                    filterControl: 'input'
+                }, {
+                    field: 'name',
+                    title: '{{'label.name'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn',
+                    filterControl: 'input'
+                }, {
+                    field: 'code',
+                    title: '{{'label.groupCode.short'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn',
+                    filterControl: 'input'
+                }, {
+                    field: 'leader',
+                    title: '{{'label.groupLeader.short'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn',
+                    filterControl: 'input'
+                }, {
+                    field: 'website',
+                    title: '{{'label.groupWebsite.short'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn',
+                    filterControl: 'input'
+                }
+            ]
+        });
+        
+        //to enable / disable the edit and remove buttons
+        $('#tableGroups').on('check.bs.table', function (e, element, args) {
+            $('#editGroup').removeClass('disabled');
+            $('#removeGroup').removeClass('disabled');
+            $('#usersRelatedGroup').removeClass('disabled');
+            //to set the id of the selected centre for the edition
+            $('#editGroupModal-groupId').val(element.id);
+            //to set the id & name of the selected centre for the deletion
+            $('#deleteGroupModal-groupId').val(element.id);
+            $('#deleteGroupName').html(element.name);
+            $('#userRelated-id').val(element.id);
+            $('#itemSelectedName').html(element.name);
+            
+        }).on('uncheck.bs.table', function(e, element, args){
+            $('#editGroup').addClass('disabled');
+            $('#removeGroup').addClass('disabled');
+            $('#usersRelatedGroup').addClass('disabled');
+            //to clean the id of the selected centre for the edition
+            $('#editGroupModal-groupId').val('');
+            $('#deleteGroupModal-groupId').val('');
+            $('#deleteGroupName').html('');
+            $('#userRelated-id').val('');
+            $('#itemSelectedName').html('');
+            
+        }).on('load-success.bs.table', function(){
+            $('#editGroup').addClass('disabled');
+            $('#removeGroup').addClass('disabled');
+            $('#usersRelatedGroup').addClass('disabled');
+            //to clean the id of the selected centre for the edition
+            $('#editGroupModal-groupId').val('');
+            $('#deleteGroupModal-groupId').val('');
+            $('#deleteGroupName').html('');
+            $('#userRelated-id').val('');
+            $('#itemSelectedName').html('');
+        });
+        
+        
+        //to open the creation popup when clicking on "new centre"
+        $('#newGroup').click(function(){
+            $("#createGroupModal").modal();
+        });
+        
+        //to open the edition popup when clicking on "edit centre"
+        $('#editGroup').click(function(){
+            $("#editGroupModal").modal();
+        });
+        
+        //to open the deletion popup when clicking on "edit centre"
+        $('#removeGroup').click(function(){
+            $("#deleteGroupModal").modal();
+        });
+        
+        //to open the table with the users related with the selected group
+        $('#usersRelatedGroup').click(function(){
+            $('#itemSelected').html('{{'group'|trans}}');
+            $('#userRelated-cmd').val('group');
+            $("#usersRelatedModal").modal();
+        });
+    });
+</script>

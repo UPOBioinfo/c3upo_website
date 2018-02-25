@@ -1,0 +1,480 @@
+<div id="usersTabSection">
+    <button id="allUsers" class="btn btn-default btn-primary btnElement">{{'allUsers'|trans}}</button>
+    <button id="clusterUsers" class="btn btn-default btnElement">{{'clusterUsers'|trans}}</button>
+    <button id="pendingUsers" class="btn btn-default btnElement">{{'pendingUsers'|trans}}</button>
+    
+    <div id='clusterUsersFunctions' class='m-t-20' style='display:none;border-top:1px solid #999999;'>
+        <div class='m-t-20'>
+            <button id="allUsersInCluster" class="btn btn-default btn-primary btnElement2">{{'allUsersInCluster'|trans}}</button>
+            <button id="activeUsersInCluster" class="btn btn-default btnElement2">{{'activeUsersInCluster'|trans}}</button>
+            <button id="disabledUsersInCluster" class="btn btn-default btnElement2">{{'disabledUsersInCluster'|trans}}</button>
+        </div>
+        
+        <div class='m-t-20' style='border-top:1px solid #999999;'>
+            <div style='display:inline;'>
+                <button id="editUser" class="btn btn-info disabled m-t-20">{{'editUser'|trans}}</button>
+            </div>
+            <div id='activeUsersInClusterFunctions' style='display:none;'>
+                <button id="addDistributionList" class="btn btn-info disabled m-t-20">{{'addDistributionList'|trans}}</button>
+                <button id="disableUser" class="btn btn-info disabled m-t-20">{{'disableUser'|trans}}</button>
+            </div>
+            <div id='disabledUsersInClusterFunctions' style='display:none;'>
+                <button id="removeDistributionList" class="btn btn-info disabled m-t-20">{{'removeDistributionList'|trans}}</button>
+                <button id="enableUser" class="btn btn-info disabled m-t-20">{{'enableUser'|trans}}</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id='pendinUsersFunctions' class='m-t-20' style='display:none;border-top:1px solid #999999;'>
+        <div class='m-t-20'>
+            <button id='verifyUser' type="button" class="btn btn-info disabled">{{'verifyUser'|trans}}</button>
+        </div>
+    </div>
+        
+    <table id="tableUsersRegistered" class="table"></table>
+    
+    {{ include('AppBundle:Administration/User:colorsLegend.html.twig') }}
+    
+    {{ include('AppBundle:Administration/User/modals:verifyUser.html.twig') }}
+    {{ include('AppBundle:Administration/User/modals:enableUser.html.twig') }}
+    {{ include('AppBundle:Administration/User/modals:editUser.html.twig') }}
+    {{ include('AppBundle:Administration/User/modals:distributionList.html.twig') }}
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#tableUsersRegistered').bootstrapTable({
+            url: "{{path('administration_get_users_table')}}",
+            pagination:true,
+            search:false,
+            showColumns:true,
+            showRefresh:true,
+            clickToSelect:true,
+            singleSelect:true,
+            showExport:true,
+            exportDataType: 'all',
+            searchAccentNeutralise: true,
+            filterControl: true,
+            stickyHeader:true,
+            stickyHeaderOffsetY:"0px",
+            exportTypes: ['pdf', 'csv', 'txt', 'sql', 'excel'],
+            exportOptions: {
+                excelstyles: ['background-color', 'color:black', 'border-bottom-color', 'border-bottom-style', 'border-bottom-width', 'border-top-color', 'border-top-style', 'border-top-width', 'border-left-color', 'border-left-style', 'border-left-width', 'border-right-color', 'border-right-style', 'border-right-width'],
+                ignoreColumn: ['selector'],
+                type:'pdf',
+                    jspdf: {orientation: 'l',
+                            format: 'a3',
+                            margins: {left:10, right:10, top:20, bottom:20},
+                            autotable: {styles: {fillColor: 'inherit',
+                                                 textColor: [0,0,0],
+                                                 fillStyle: 'DF',
+                                                 lineColor: [0,0,0],
+                                                 lineWidth: 0.1},
+                                        headerStyles: { textColor:[0,0,0]},
+                                        tableWidth: 'auto'}
+                           }
+            },
+            iconsPrefix: 'fa',
+            icons: {
+                refresh: 'fa-refresh',
+                columns: 'fa-th',
+                export: 'fa-download'
+            },
+            columns: [
+                {
+                    field: 'selector',
+                    checkbox: true,
+                    class: 'smallColumn',
+                    cellStyle: 'isClusterUser'
+                },{
+                    field: 'id',
+                    title: '{{'ID'|trans}}',
+                    sortable: true,
+                    class: 'smallColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                },{
+                    field: 'isClusterUser',
+                    title: '{{'label.isClusterUser'|trans}}',
+                    sortable: true,
+                    class: 'smallColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                },{
+                    field: 'isActive',
+                    title: '{{'label.isActiveUser'|trans}}',
+                    sortable: true,
+                    class: 'smallColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                },{
+                    field: 'isInListDistribution',
+                    title: '{{'label.isInDistributionList'|trans}}',
+                    sortable: true,
+                    class: 'smallColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                }, {
+                    field: 'name',
+                    title: '{{'label.name'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                }, {
+                    field: 'lastname',
+                    title: '{{'label.lastname'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                }, {
+                    field: 'position',
+                    title: '{{'label.position'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                }, {
+                    field: 'email',
+                    title: '{{'label.email'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                }, {
+                    field: 'phone',
+                    title: '{{'label.phone'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                }, {
+                    field: 'username',
+                    title: '{{'label.username.short'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                }, {
+                    field: 'usingTime',
+                    title: '{{'label.usingTime'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                }, {
+                    field: 'centre',
+                    title: '{{'label.centre'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn2',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                }, {
+                    field: 'department',
+                    title: '{{'label.department'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn2',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                }, {
+                    field: 'group',
+                    title: '{{'label.group'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                }, {
+                    field: 'softwareSpecifications',
+                    title: '{{'label.softwareSpecifications'|trans}}',
+                    sortable: true,
+                    class: 'bigColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                }, {
+                    field: 'description',
+                    title: '{{'label.description.short'|trans}}',
+                    sortable: true,
+                    class: 'bigColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                },{
+                    field: 'center_tmp',
+                    title: '{{'label.centre_tmp'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                },{
+                    field: 'department_tmp',
+                    title: '{{'label.department_tmp'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                }, {
+                    field: 'groupName_tmp',
+                    title: '{{'label.groupName_tmp'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                }, {
+                    field: 'groupLeader_tmp',
+                    title: '{{'label.groupLeader_tmp'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                }, {
+                    field: 'groupCode_tmp',
+                    title: '{{'label.groupCode_tmp'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                }, {
+                    field: 'groupWebsite_tmp',
+                    title: '{{'label.groupWebsite_tmp'|trans}}',
+                    sortable: true,
+                    class: 'mediumColumn',
+                    cellStyle: 'isClusterUser',
+                    filterControl: 'input'
+                }  
+            ]
+        });
+        
+        //To enable the buttons
+        $('#tableUsersRegistered').on('check.bs.table', function (e, element, args) {
+            var selectedTab = $('.btnElement.btn-primary').attr('id');
+            updateButtonsAndInputs(selectedTab, element);
+            
+        }).on('uncheck.bs.table', function(e, element, args){
+            disableAllButtons();
+            
+        }).on('load-success.bs.table', function(){
+            disableAllButtons();
+        });
+
+        //To display all users registered.
+        $('#allUsers').click(function(){
+            $('.btnElement').removeClass('btn-primary');
+            $(this).addClass('btn-primary');
+            $('#clusterUsersFunctions').css('display', 'none');
+            $('#pendinUsersFunctions').css('display', 'none');
+            hideTmpFields(0);
+            setTimeout(function(){
+                $('#tableUsersRegistered').bootstrapTable('refreshOptions', {url: "{{path('administration_get_users_table', {'clusterStatus': null} )}}"});
+            }, 100);
+        });
+        //To display those users that has cluster access.
+        $('#clusterUsers').click(function(){
+            $('.btnElement').removeClass('btn-primary');
+            $(this).addClass('btn-primary');
+            $('#clusterUsersFunctions').css('display', 'block');
+            $('#pendinUsersFunctions').css('display', 'none');
+            hideTmpFields(1);
+            $('.btnElement2').removeClass('btn-primary');
+            $('#allUsersInCluster').addClass('btn-primary');
+            setTimeout(function(){
+                $('#tableUsersRegistered').bootstrapTable('refreshOptions', {url: "{{path('administration_get_users_table', {'clusterStatus': 1} )}}"});
+            }, 100);
+        });
+        //To display those users that register but don't have cluster access yet.
+        $('#pendingUsers').click(function(){
+            $('.btnElement').removeClass('btn-primary');
+            $(this).addClass('btn-primary');
+            $('#clusterUsersFunctions').css('display', 'none');
+            $('#pendinUsersFunctions').css('display', 'block');
+            hideTmpFields(0);
+            setTimeout(function(){
+                $('#tableUsersRegistered').bootstrapTable('refreshOptions', {url: "{{path('administration_get_users_table', {'clusterStatus': -1} )}}"});
+            }, 100);
+        });
+
+
+        //To display all cluster users (active & disabled)
+        $('#allUsersInCluster').click(function(){
+            $('.btnElement2').removeClass('btn-primary');
+            $(this).addClass('btn-primary');
+            $('#activeUsersInClusterFunctions').css('display','none');
+            $('#disabledUsersInClusterFunctions').css('display','none');
+            setTimeout(function(){
+                $('#tableUsersRegistered').bootstrapTable('refreshOptions', {url: "{{path('administration_get_users_table', {'clusterStatus': 1} )}}"});
+            }, 100);
+        });
+        //To display only active cluster users.
+        $('#activeUsersInCluster').click(function(){
+            $('.btnElement2').removeClass('btn-primary');
+            $(this).addClass('btn-primary');
+            $('#activeUsersInClusterFunctions').css('display','inline');
+            $('#disabledUsersInClusterFunctions').css('display','none');
+            setTimeout(function(){
+                $('#tableUsersRegistered').bootstrapTable('refreshOptions', {url: "{{path('administration_get_users_table', {'clusterStatus': 1, 'userStatus':1} )}}"});
+            }, 100);
+        });
+        //To display only disabled cluster users.
+        $('#disabledUsersInCluster').click(function(){
+            $('.btnElement2').removeClass('btn-primary');
+            $(this).addClass('btn-primary');
+            $('#activeUsersInClusterFunctions').css('display','none');
+            $('#disabledUsersInClusterFunctions').css('display','inline');
+            setTimeout(function(){
+                $('#tableUsersRegistered').bootstrapTable('refreshOptions', {url: "{{path('administration_get_users_table', {'clusterStatus': 1, 'userStatus':-1} )}}"});
+            }, 100);    
+        });
+
+        //To verify the information of an existing user
+        $('#verifyUser').click(function(){
+            if(!$('#verifyUser').hasClass('disabled')){
+                $("#verifyUserModal").modal();
+            }
+        });
+
+        //To mark as enabled a selected user
+        $('#enableUser').click(function(){
+            if(!$('#enableUser').hasClass('disabled')){
+                $('#enableUserText').css('display', 'inline');
+                $('#disableUserText').css('display', 'none');
+                $('#enableUserModal-status').val(1);
+                $("#enableUserModal").modal();
+            }
+        });
+        //To mark as disabled a selected user
+        $('#disableUser').click(function(){
+            if(!$('#disableUser').hasClass('disabled')){
+                $('#enableUserText').css('display', 'none');
+                $('#disableUserText').css('display', 'inline');
+                $('#enableUserModal-status').val(0);
+                $("#enableUserModal").modal();
+            }
+        });
+        
+        //To mark that the user belong to the distribution list
+        $('#addDistributionList').click(function(){
+            if(!$('#addDistributionList').hasClass('disabled')){
+                $('#addUserToDistributionListText').css('display', 'inline');
+                $('#removeUserFromDistributionListText').css('display', 'none');
+                $('#distributionListModal-status').val(1);
+                $("#distributionListModal").modal();
+            }
+        });
+        
+        //To mark that the user doesn't belong to the distribution list
+        $('#removeDistributionList').click(function(){
+            if(!$('#removeDistributionList').hasClass('disabled')){
+                $('#addUserToDistributionListText').css('display', 'none');
+                $('#removeUserFromDistributionListText').css('display', 'inline');
+                $('#distributionListModal-status').val(0);
+                $("#distributionListModal").modal();
+            }
+        });
+        
+        //To edit an existing cluster user
+        $('#editUser').click(function(){
+            if(!$('#editUser').hasClass('disabled')){
+                $("#editUserModal").modal();
+            }
+        });
+    });
+
+    /**
+     * To color the row green or red depending if the user is cluster user or not. 
+     * @param {type} value
+     * @param {type} row
+     * @param {type} index
+     * @param {type} field
+     * @returns {isClusterUser.color}     */
+    function isClusterUser(value, row, index, field){
+    
+        //red - User not in cluster
+        var color = {css: {'background-color': '#f1d4d4', 'color': 'black' }};
+        
+        //User in cluster
+        if(row.isClusterUser_code){
+            
+            if(!row.isActiveUser_code && row.isInListDistribution_code){
+                //orange
+                color = {css: {'background-color': '#f3cda4', 'color': 'black' }};
+            }
+            
+            if(!row.isActiveUser_code && !row.isInListDistribution_code){
+                //grey
+                color = {css: {'background-color': '#e4e4e4', 'color': 'black' }};
+            }
+            
+            if(row.isActiveUser_code && !row.isInListDistribution_code){
+                //yellow
+                color = {css: {'background-color': '#eaf3a4', 'color': 'black' }};
+            }
+            
+            if(row.isActiveUser_code && row.isInListDistribution_code){
+                //green
+                color = {css: {'background-color': '#E7F7E8', 'color': 'black' }};
+            }
+        }
+        
+        return color;
+    }
+    
+    function hideTmpFields(cmd){
+        if(cmd){
+            $('#tableUsersRegistered').bootstrapTable('hideColumn', 'center_tmp');
+            $('#tableUsersRegistered').bootstrapTable('hideColumn', 'department_tmp');
+            $('#tableUsersRegistered').bootstrapTable('hideColumn', 'groupName_tmp');
+            $('#tableUsersRegistered').bootstrapTable('hideColumn', 'groupLeader_tmp');
+            $('#tableUsersRegistered').bootstrapTable('hideColumn', 'groupCode_tmp');
+            $('#tableUsersRegistered').bootstrapTable('hideColumn', 'groupWebsite_tmp');
+            return true;
+        }
+        $('#tableUsersRegistered').bootstrapTable('showColumn', 'center_tmp');
+        $('#tableUsersRegistered').bootstrapTable('showColumn', 'department_tmp');
+        $('#tableUsersRegistered').bootstrapTable('showColumn', 'groupName_tmp');
+        $('#tableUsersRegistered').bootstrapTable('showColumn', 'groupLeader_tmp');
+        $('#tableUsersRegistered').bootstrapTable('showColumn', 'groupCode_tmp');
+        $('#tableUsersRegistered').bootstrapTable('showColumn', 'groupWebsite_tmp');
+    }
+    
+    function updateButtonsAndInputs(selectedTab, element){
+        disableAllButtons();
+        switch(selectedTab){
+            case 'pendingUsers':
+                //In case the user is not in the cluster we enable the button of "verify user"
+                $('#verifyUser').addClass('disabled');
+                $('#verifyUserModal-userId').val(element.id);
+                if(!element.isClusterUser_code){
+                    $('#verifyUser').removeClass('disabled');
+                }
+                break;
+            case 'clusterUsers':
+                //In case the user is not active in the cluster
+                if(!element.isActiveUser_code){
+                    $('#enableUser').removeClass('disabled');
+                    $('#removeDistributionList').removeClass('disabled');
+                }else{
+                    $('#disableUser').removeClass('disabled');
+                    $('#addDistributionList').removeClass('disabled');
+                }
+                $('#editUser').removeClass('disabled');
+                $('#enableUserModal-userId').val(element.id);
+                $('#disableUserUsername').html(element.name+' '+element.lastname);
+                $('#distributionListModal-userId').val(element.id);
+                $('#distributionListUsername').html(element.name+' '+element.lastname);
+                $('#editUserModal-userId').val(element.id);
+                break;
+        }
+    }
+    function disableAllButtons(){
+        $('#verifyUser').addClass('disabled');
+        $('#verifyUserModal-userId').val('');
+        $('#enableUser').addClass('disabled');
+        $('#disableUser').addClass('disabled');
+        $('#editUser').addClass('disabled');
+        $('#addDistributionList').addClass('disabled');
+        $('#removeDistributionList').addClass('disabled');
+        $('enableUserModal-userId').val('');
+        $('enableUserModal-status').val('');
+        $('disableUserUsername').html('');
+        $('#editUserModal-userId').val('');
+    }
+</script>

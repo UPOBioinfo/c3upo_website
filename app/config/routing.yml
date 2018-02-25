@@ -1,0 +1,5 @@
+app:
+    resource: '@AppBundle/Resources/config/routing.yml'
+
+aptcha_routing:
+  resource: "@CaptchaBundle/Resources/config/routing.yml"

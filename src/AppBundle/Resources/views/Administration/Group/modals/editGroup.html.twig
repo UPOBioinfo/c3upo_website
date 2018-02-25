@@ -1,0 +1,30 @@
+<div id="editGroupModal" class="modal fade editGroupModal" {#tabindex="-1"#} role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel">{{'editGroup' | trans}}</h3>
+            </div>  
+            <div class="modal-body" id="editGroupContent">
+                <input type="hidden" id="editGroupModal-groupId">
+                <div class="formContent"></div>
+            </div>
+        </div>
+    </div>
+</div>
+            
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#editGroupModal").on('show.bs.modal', function(event){
+            $("#editGroupModal .cleanableinput>*").val('');
+            $("#formEditGroupErrorSection").html("");
+
+            var url = "{{ path('adminstration_group_edition', {'groupId': 'groupId'}) }}";
+            url = url.replace('groupId', $('#editGroupModal-groupId').val());
+            $.post(url, function(response){
+                $("#editGroupModal .modal-body .formContent").html(response.html_form);
+                $('input').attr('autocomplete', 'off');
+            }, 'json');
+        });
+    });
+</script>

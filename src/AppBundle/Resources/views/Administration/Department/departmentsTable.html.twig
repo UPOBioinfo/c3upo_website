@@ -1,0 +1,121 @@
+<div id="departmentsTabSection">
+    <button id="newDepartment" class="btn btn-primary"><i class="fa fa-plus"></i> {{'newDepartment'|trans}}</button>
+    <button id="editDepartment" class="btn btn-primary disabled"><i class="fa fa-pencil"></i> {{'editDepartment'|trans}}</button>
+    <button id="removeDepartment" class="btn btn-danger disabled"><i class="fa fa-remove"></i> {{'removeDepartment'|trans}}</button>
+    <button id="usersRelatedDepartment" class="btn btn-primary disabled"><i class="fa fa-list-alt"></i> {{'usersRelatedDepartment'|trans}}</button>
+    
+    <table id="tableDepartments" class="table">
+
+    </table>
+    
+    {{ include('AppBundle:Administration/Department/modals:createDepartment.html.twig') }}
+    {{ include('AppBundle:Administration/Department/modals:editDepartment.html.twig') }}
+    {{ include('AppBundle:Administration/Department/modals:deleteDepartment.html.twig') }}
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        // TO CREATE THE Department'S TABLE
+        $('#tableDepartments').bootstrapTable({
+            url: "{{path('administration_get_departments_table')}}",
+            pagination:true,
+            search:true,
+            showColumns:true,
+            showRefresh:true,
+            clickToSelect:true,
+            singleSelect:true,
+            showExport:true,
+            exportDataType: 'all',
+            searchAccentNeutralise: true,
+            filterControl: true,
+            stickyHeader:true,
+            stickyHeaderOffsetY:"0px",
+            pageSize: 25,
+            iconsPrefix: 'fa',
+            icons: {
+                refresh: 'fa-refresh',
+                columns: 'fa-th',
+                export: 'fa-download'
+            },
+            columns: [
+                {
+                    field: 'selector',
+                    checkbox: true,
+                    class: 'smallColumn'
+                },
+                {
+                    field: 'id',
+                    title: '{{'ID'|trans}}',
+                    sortable: true,
+                    class: 'smallColumn',
+                    filterControl: 'input'
+                }, {
+                    field: 'name',
+                    title: '{{'label.name'|trans}}',
+                    sortable: true,
+                    class: 'bigColumn',
+                    filterControl: 'input'
+                }
+            ]
+        });
+        
+        //to enable / disable the edit and remove buttons
+        $('#tableDepartments').on('check.bs.table', function (e, element, args) {
+            $('#editDepartment').removeClass('disabled');
+            $('#removeDepartment').removeClass('disabled');
+            $('#usersRelatedDepartment').removeClass('disabled');
+            //to set the id of the selected centre for the edition
+            $('#editDepartmentModal-departmentId').val(element.id);
+            //to set the id & name of the selected centre for the deletion
+            $('#deleteDepartmentModal-departmentId').val(element.id);
+            $('#deleteDepartmentName').html(element.name);
+            $('#userRelated-id').val(element.id);
+            $('#itemSelectedName').html(element.name);
+            
+        }).on('uncheck.bs.table', function(e, element, args){
+            $('#editDepartment').addClass('disabled');
+            $('#removeDepartment').addClass('disabled');
+            $('#usersRelatedDepartment').addClass('disabled');
+            //to clean the id of the selected centre for the edition
+            $('#editDepartmentModal-departmentId').val('');
+            $('#deleteDepartmentModal-departmentId').val('');
+            $('#deleteDepartmentName').html('');
+            $('#userRelated-id').val('');
+            $('#itemSelectedName').html('');
+            
+        }).on('load-success.bs.table', function(){
+            $('#editDepartment').addClass('disabled');
+            $('#removeDepartment').addClass('disabled');
+            $('#usersRelatedDepartment').addClass('disabled');
+            //to clean the id of the selected centre for the edition
+            $('#editDepartmentModal-departmentId').val('');
+            $('#deleteDepartmentModal-departmentId').val('');
+            $('#deleteDepartmentName').html('');
+            $('#userRelated-id').val('');
+            $('#itemSelectedName').html('');
+        });
+        
+        
+        //to open the creation popup when clicking on "new centre"
+        $('#newDepartment').click(function(){
+            $("#createDepartmentModal").modal();
+        });
+        
+        //to open the edition popup when clicking on "edit centre"
+        $('#editDepartment').click(function(){
+            $("#editDepartmentModal").modal();
+        });
+        
+        //to open the deletion popup when clicking on "edit centre"
+        $('#removeDepartment').click(function(){
+            $("#deleteDepartmentModal").modal();
+        });
+        
+        //to open the table with the users related with the selected department
+        $('#usersRelatedDepartment').click(function(){
+            $('#itemSelected').html('{{'department'|trans}}');
+            $('#userRelated-cmd').val('department');
+            $("#usersRelatedModal").modal();
+        });
+    });
+</script>

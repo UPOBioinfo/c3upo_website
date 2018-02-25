@@ -1,0 +1,74 @@
+<div class="{#formCreation#} row m-0">
+    <div class="col-xs-12" style="padding:50px;">
+        <h3>{{'welcomeClusterInfo'|trans}}</h3>
+    </div>
+    <div class="col-xs-12" style="padding:0px 50px 50px 50px;">
+        <p><b>{{'clusterInfo.intro'|trans}}</b></p>
+        <p>{{'clusterInfo.text1'|trans}}</p>
+        <p>{{'clusterInfo.text2'|trans}}</p>
+        <br>
+        <p><b>{{'clusterInfo.hardware'|trans}}</b></p>
+        <ul>
+            <li>{{'clusterInfo.nodes'|trans}}</li>
+            <li>{{'clusterInfo.cores'|trans}}</li>
+{#            <li>{{'clusterInfo.connection'|trans}}</li>#}
+            <li>{{'clusterInfo.memory'|trans}}</li>
+{#            <li>{{'clusterInfo.power'|trans}}</li>#}
+            <li>{{'clusterInfo.capacityShared'|trans}}</li>
+            <li>{{'clusterInfo.queue'|trans}}</li>
+            <li>{{'clusterInfo.os'|trans}}</li>
+        </ul>
+        <br>
+        <p><b>{{'clusterInfo.software'|trans}}</b></p>
+        <ul>
+            {#<li>
+                <b>{{'clusterInfo.math'|trans}}</b>
+                <ul>
+                    <li>GAP - v4.7.2</li>
+                </ul>
+            </li>
+            <li>
+                <b>{{'clusterInfo.physic'|trans}}</b>
+                <ul>
+                    <li>Geant4</li>
+                </ul>
+            </li>
+            <li>
+                <b>{{'clusterInfo.chemistry'|trans}}</b>
+                <ul>
+                    <li>​Gamess</li>
+                </ul>
+            </li>#}
+            <li>
+                <b>{{'clusterInfo.bioinformatics'|trans}}</b>
+                <ul>
+                    <li>​bedtools - v2.18</li>
+                    <li>Blast - v2.2.10</li>
+                    <li>Blast+ - v2.6</li>
+                    <li>​Bowtie - v1.0.0</li>
+                    <li>​TransDecoder - v3.0</li>
+                    <li>Trinity - v2.4</li>
+                    <li>Trinotate - v3.0</li>
+                </ul>
+            </li>
+            
+        </ul>
+        <br>
+        <p><b>{{'clusterInfo.programmingLanguagues'|trans}}</b></p>
+        <ul>
+            <li>{{'clusterInfo.java'|trans}}</li>
+            <li>{{'clusterInfo.perl'|trans}}</li>
+            <li>{{'clusterInfo.php'|trans}}</li>
+            <li>{{'clusterInfo.python'|trans}}</li>
+{#            <li>{{'clusterInfo.ruby'|trans}}</li> #}
+        </ul>
+        <br>
+        <p><b>{{'clusterInfo.parallel'|trans}}</b></p>
+        <ul>
+            <li>{{'clusterInfo.OPENMPI'|trans}}</li>
+        </ul>
+        <br>
+        <p>{{'clusterInfo.extraInfo'|trans|raw}} <img style="width:150px;" src="{{asset('images/email.png')}}" /></p>
+        <p>{{'clusterInfo.extraInfoTemp'|trans|raw}}</p>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<div id="createDepartmentModal" class="modal fade createDepartmentModal" {#tabindex="-1"#} role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel">{{'newDepartment' | trans}}</h3>
+            </div>  
+            <div class="modal-body">
+                <div class="formContent"></div>
+            </div>
+        </div>
+    </div>
+</div>
+            
+<script type="text/javascript">
+    $(document).ready(function(){
+         $("#createDepartmentModal").on('show.bs.modal', function(event){
+            $("#createDepartmentModal .cleanableinput>*").val('');
+            $("#formNewDepartmentErrorSection").html("");
+
+            var url = "{{ path('adminstration_department_creation') }}";
+            $.post(url, '', function(response){
+                $("#createDepartmentModal .modal-body .formContent").html(response.html_form);
+                $('input').attr('autocomplete', 'off');
+            }, 'json');
+        });
+        
+    });
+</script>

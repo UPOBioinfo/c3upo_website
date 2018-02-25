@@ -1,0 +1,30 @@
+<div id="editUserModal" class="modal fade editUserModal" {#tabindex="-1"#} role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel">{{'editUser' | trans}}</h3>
+            </div>  
+            <div class="modal-body">
+                <input type="hidden" id="editUserModal-userId">
+                <div class="formContent"></div>
+            </div>
+        </div>
+    </div>
+</div>
+            
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#editUserModal").on('show.bs.modal', function(event){
+            $("#verifyUserModal .cleanableinput>*").val('');
+            $("#formEditUserErrorSection").html("");
+
+            var url = "{{ path('adminstration_user_edition', {'userId': 'userId'}) }}";
+            url = url.replace('userId', $('#editUserModal-userId').val());
+            $.post(url, function(response){
+                $("#editUserModal .modal-body .formContent").html(response.html_form);
+                $('input').attr('autocomplete', 'off');
+            }, 'json');
+        });
+    });
+</script>

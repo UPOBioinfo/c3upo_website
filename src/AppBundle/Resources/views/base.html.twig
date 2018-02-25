@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block css %}    
+    {{ parent() }}    
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <!-- Success section -->
+    <div id='alertSectionContent' class="m-0" style="margin-top:-17px;">
+        <div class="" id="alertSection">
+            <div id="successSection" class="alert alert-info alert-dismissible" style="display:none;"></div>
+            <div id="errorSection" class="alert alert-danges alert-dismissible" style="display:none;"></div>
+        </div>
+    </div>
+    
+    <div id="wrapper">
+        {% block contentSection %}
+
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+    
+{% endblock %}

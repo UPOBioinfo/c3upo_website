@@ -1,0 +1,104 @@
+<div id="groupsTabSection">
+    <button id="newLeader" class="btn btn-primary"><i class="fa fa-plus"></i> {{'newLeader'|trans}}</button>
+    <button id="editLeader" class="btn btn-primary disabled"><i class="fa fa-pencil"></i> {{'editLeader'|trans}}</button>
+    <button id="removeLeader" class="btn btn-danger disabled"><i class="fa fa-remove"></i> {{'removeLeader'|trans}}</button>
+    
+    <table id="tableLeaders" class="table">
+
+    </table>
+    
+    {{ include('AppBundle:Administration/Leader/modals:createLeader.html.twig') }}
+    {{ include('AppBundle:Administration/Leader/modals:editLeader.html.twig') }}
+    {{ include('AppBundle:Administration/Leader/modals:deleteLeader.html.twig') }}
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        // TO CREATE THE Department'S TABLE
+        $('#tableLeaders').bootstrapTable({
+            url: "{{path('administration_get_leaders_table')}}",
+            pagination:true,
+            search:true,
+            showColumns:true,
+            showRefresh:true,
+            clickToSelect:true,
+            singleSelect:true,
+            showExport:true,
+            exportDataType: 'all',
+            searchAccentNeutralise: true,
+            filterControl: true,
+            stickyHeader:true,
+            stickyHeaderOffsetY:"0px",
+            pageSize: 25,
+            iconsPrefix: 'fa',
+            icons: {
+                refresh: 'fa-refresh',
+                columns: 'fa-th',
+                export: 'fa-download'
+            },
+            columns: [
+                {
+                    field: 'selector',
+                    checkbox: true,
+                    class: 'smallColumn'
+                },
+                {
+                    field: 'id',
+                    title: '{{'ID'|trans}}',
+                    sortable: true,
+                    class: 'smallColumn',
+                    filterControl: 'input'
+                }, {
+                    field: 'name',
+                    title: '{{'label.name'|trans}}',
+                    sortable: true,
+                    class: 'bigColumn',
+                    filterControl: 'input'
+                }
+            ]
+        });
+        
+        //to enable / disable the edit and remove buttons
+        $('#tableLeaders').on('check.bs.table', function (e, element, args) {
+            $('#editLeader').removeClass('disabled');
+            $('#removeLeader').removeClass('disabled');
+            //to set the id of the selected centre for the edition
+            $('#editLeaderModal-leaderId').val(element.id);
+            //to set the id & name of the selected centre for the deletion
+            $('#deleteLeaderModal-leaderId').val(element.id);
+            $('#deleteLeaderName').html(element.name);
+            
+        }).on('uncheck.bs.table', function(e, element, args){
+            $('#editLeader').addClass('disabled');
+            $('#removeLeader').addClass('disabled');
+            //to clean the id of the selected centre for the edition
+            $('#editLeaderModal-leaderId').val('');
+            $('#deleteLeaderModal-leaderId').val('');
+            $('#deleteLeaderName').html('');
+            
+        }).on('load-success.bs.table', function(){
+            $('#editLeader').addClass('disabled');
+            $('#removeLeader').addClass('disabled');
+            //to clean the id of the selected centre for the edition
+            $('#editLeaderModal-leaderId').val('');
+            $('#deleteLeaderModal-leaderId').val('');
+            $('#deleteLeaderName').html('');
+        });
+        
+        
+        //to open the creation popup when clicking on "new centre"
+        $('#newLeader').click(function(){
+            $("#createLeaderModal").modal();
+        });
+        
+        //to open the edition popup when clicking on "edit centre"
+        $('#editLeader').click(function(){
+            $("#editLeaderModal").modal();
+        });
+        
+        //to open the deletion popup when clicking on "edit centre"
+        $('#removeLeader').click(function(){
+            $("#deleteLeaderModal").modal();
+        });
+    });
+</script>

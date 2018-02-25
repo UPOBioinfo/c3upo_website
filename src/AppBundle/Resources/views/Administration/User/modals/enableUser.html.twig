@@ -1,0 +1,50 @@
+<div id="enableUserModal" class="modal fade enableUserModal" {#tabindex="-1"#} role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel">{{'enableUser' | trans}}</h3>
+            </div>  
+            <div class="modal-body" id="editUserContent">
+                <input type="hidden" id="enableUserModal-userId">
+                <input type="hidden" id="enableUserModal-status">
+                <div class="formContent">
+                    <div>
+                        <p>
+                            <span id='enableUserText' style='display:none;'>{{'enableUserText'|trans}}</span>
+                            <span id='disableUserText' style='display:none;'>{{'disableUserText'|trans}}</span>
+                            <span id='disableUserUsername' style='font-weight: bold;'></span>
+                        </p>
+                    </div>
+                    <div><p>{{'enableUserText.confirm'|trans}}</p></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">{{'close'|trans}}</button>
+                <button type="button" class="btn btn-danger" id="changeStatus-confirm">{{'accept'|trans}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+            
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#changeStatus-confirm").click(function(event){
+
+            var url = "{{ path('adminstration_user_enable', {'userId': 'userId', 'status': 'status'}) }}";
+            url = url.replace('userId', $('#enableUserModal-userId').val());
+            url = url.replace('status', $('#enableUserModal-status').val());
+            $.post(url, function(response){
+                if(!response.error){
+                    displayNotice(response.message, 'successSection');
+                    //we have to add the new element to the grid, for that we update the actual page
+                    updateJpTable('tableUsersRegistered');
+                    displayCommand(response.command);
+                }else{
+                    displayNotice(response.message, 'errorSection');
+                }
+                $("#enableUserModal").modal('hide');
+            }, 'json');
+        });
+    });
+</script>

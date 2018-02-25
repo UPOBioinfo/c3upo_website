@@ -1,0 +1,51 @@
+{{ form_start(profileCentre) }}
+
+    <div id="formEditCentreErrorSection">
+        {% if not profileCentre.vars.valid %}
+            <div class="alert alert-danger errorSection" role="alert">
+                <div>{{ form_errors(profileCentre.name) }}</div>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-3 control-label">
+            {{ form_label(profileCentre.name)}}
+        </label>
+
+        <div class="col-xs-9 controls cleanableinput">
+            {{ form_widget(profileCentre.name)}}
+        </div>    
+    </div>
+
+    <div class="form-group row">
+        <div class="col-xs-12 controls">
+            {{ form_widget(profileCentre.save)}}
+        </div>    
+    </div>
+{{ form_end(profileCentre) }}
+        
+    
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $({{ profileCentre.vars.name }}).submit(function(e){
+            e.preventDefault();
+            var formSerialize = $(this).serialize();
+            var url = $({{ profileCentre.vars.name }}).prop('action');
+            $.post(url, formSerialize, function(response){
+                if(!response.error){
+                    $("#editCentreModal").modal('hide');
+                    displayNotice(response.message, 'successSection');
+                    //we have to add the new element to the grid, for that we update the actual page
+                    updateJpTable('tableCentres');
+                }else{
+                    $({{ profileCentre.vars.name }}).replaceWith(response.html_form);
+                    $('#editCentreModal').animate({
+                      scrollTop: 0
+                    }, 1000);
+                }
+            },'JSON');
+        });
+    });
+</script>

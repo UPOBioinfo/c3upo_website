@@ -1,0 +1,16 @@
+services:
+    AppBundle\Form\CentreType:
+        arguments: ['@doctrine.orm.entity_manager']
+        tags: [formCentre.type]
+    AppBundle\Form\DepartmentType:
+        arguments: ['@doctrine.orm.entity_manager']
+        tags: [formDepartment.type]
+    AppBundle\Form\LeaderType:
+        arguments: ['@doctrine.orm.entity_manager']
+        tags: [formLeader.type]
+    AppBundle\Form\GroupType:
+        arguments: ['@doctrine.orm.entity_manager']
+        tags: [formGroup.type]
+    AppBundle\Form\UserVerifyType:
+        arguments: ['@doctrine.orm.entity_manager']
+        tags: [formUserVerify.type]    

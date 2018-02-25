@@ -1,0 +1,34 @@
+<h4>{{'email.NewRegistration.body'|trans}}</h4>
+<div style="margin-top:20px;">
+    <p>{{'label.name'|trans}}: {{user.name}}</p>
+    <p>{{'label.lastname'|trans}}: {{user.lastname}}</p>
+    <p>{{'label.position'|trans}}: {{user.position}}</p>
+    <p>{{'label.phone'|trans}}: {{user.phone}}</p>
+    <p>{{'label.email'|trans}}: {{user.email}}</p>
+    <p>{{'label.usingTime'|trans}}: {{user.usingTime.code | trans}}</p>
+    
+    {% set centre = user.centreTmp %}
+    {% if user.centre is defined and user.centre is not null %}
+        {% set centre = user.centre.name %}
+    {% endif %}
+    <p>{{'label.centre'|trans}}: {{centre}}</p>
+    
+    {% set department = user.departmentTmp %}
+    {% if user.department is defined and user.department is not null %}
+        {% set department = user.department.name %}
+    {% endif %}
+    <p>{{'label.department'|trans}}: {{department}}</p>
+    
+    {% if user.group is defined and user.group is not null %}
+        <p>{{'label.groupName'|trans}}: {{user.group.name}}</p>
+        <p>{{'label.groupLeader'|trans}}: {{user.group.leader.name}}</p>
+    {% else %}
+        <p>{{'label.groupName'|trans}}: {{user.groupNameTmp}}</p>
+        <p>{{'label.groupLeader'|trans}}: {{user.groupLeaderTmp}}</p>
+        <p>{{'label.groupCode.short'|trans}}: {{user.groupCodeTmp}}</p>
+        <p>{{'label.groupWebsite'|trans}}: {{user.groupWebsiteTmp}}</p>
+    {% endif %}
+    
+    <p>{{'label.softwareSpecifications'|trans}}: {{user.softwareSpecifications}}</p>
+    <p>{{'label.description'|trans}}: {{user.description}}</p>
+</div>

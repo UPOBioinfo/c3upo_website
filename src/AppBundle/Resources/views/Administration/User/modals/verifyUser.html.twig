@@ -1,0 +1,30 @@
+<div id="verifyUserModal" class="modal fade verifyUserModal" {#tabindex="-1"#} role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel">{{'verifyUser' | trans}}</h3>
+            </div>  
+            <div class="modal-body" id="editUserContent">
+                <input type="hidden" id="verifyUserModal-userId">
+                <div class="formContent"></div>
+            </div>
+        </div>
+    </div>
+</div>
+            
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#verifyUserModal").on('show.bs.modal', function(event){
+            $("#verifyUserModal .cleanableinput>*").val('');
+            $("#formVerifyUserErrorSection").html("");
+
+            var url = "{{ path('adminstration_user_verification', {'userId': 'userId'}) }}";
+            url = url.replace('userId', $('#verifyUserModal-userId').val());
+            $.post(url, function(response){
+                $("#verifyUserModal .modal-body .formContent").html(response.html_form);
+                $('input').attr('autocomplete', 'off');
+            }, 'json');
+        });
+    });
+</script>

@@ -1,0 +1,317 @@
+
+{{ form_start(formUser) }}
+
+    <div>{{ form_errors(formUser)}}</div>
+    <div id='formVerifyUserErrorSection'>
+    {% if not formUser.vars.valid %}
+        <div class="alert alert-danger errorSection" role="alert">
+            <div>{{ form_errors(formUser.name) }}</div>
+            <div>{{ form_errors(formUser.lastname) }}</div>
+            <div>{{ form_errors(formUser.position) }}</div>
+            <div>{{ form_errors(formUser.phone) }}</div>
+            <div>{{ form_errors(formUser.email) }}</div>
+            <div>{{ form_errors(formUser.usingTime) }}</div>
+            <div>{{ form_errors(formUser.username) }}</div>
+            <div>{{ form_errors(formUser.centre) }}</div>
+            <div>{{ form_errors(formUser.centre_tmp) }}</div>
+            <div>{{ form_errors(formUser.department) }}</div>
+            <div>{{ form_errors(formUser.department_tmp) }}</div>
+            <div>{{ form_errors(formUser.group) }}</div>
+            <div>{{ form_errors(formUser.groupName_tmp) }}</div>
+            <div>{{ form_errors(formUser.leader) }}</div>
+            <div>{{ form_errors(formUser.groupLeader_tmp) }}</div>
+            <div>{{ form_errors(formUser.groupCode_tmp) }}</div>
+            <div>{{ form_errors(formUser.groupWebsite_tmp) }}</div>
+            <div>{{ form_errors(formUser.softwareSpecifications) }}</div>
+            <div>{{ form_errors(formUser.description) }}</div>
+        </div>
+    {% endif %}
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formUser.name)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formUser.name)}}
+        </div>    
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formUser.lastname)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formUser.lastname)}}
+        </div>    
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formUser.position)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formUser.position)}}
+        </div>    
+    </div>
+        
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formUser.phone)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formUser.phone)}}
+        </div>    
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formUser.email)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formUser.email)}}
+        </div>    
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formUser.usingTime)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formUser.usingTime)}}
+        </div>    
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formUser.username)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formUser.username)}}
+        </div>    
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formUser.centre)}}
+        </label>
+        <div class="col-xs-10  col-sm-10 col-md-5 col-lg-6">
+            <div class="centreSelector">
+                {{ form_widget(formUser.centre)}}
+            </div>
+            <div class="centreInput" style="display: none;">
+                {{ form_widget(formUser.centre_tmp)}}
+            </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <div class="centreSelector">
+                <button type="button" class="btn btn-primary" style="width:100%;" onclick="changeOption('center', 1);">{{'other'|trans}}</button>
+            </div>
+            <div class="centreInput" style="display: none;">
+                <button type="button" class="btn btn-primary" style="width:100%;" onclick="changeOption('center', 0);">{{'existing'|trans}}</button>
+            </div>
+        </div>
+    </div>
+            
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formUser.department)}}
+        </label>
+        <div class="col-xs-10  col-sm-10 col-md-5 col-lg-6">
+            <div class="departmentSelector">
+                {{ form_widget(formUser.department)}}
+            </div>
+            <div class="departmentInput" style="display: none;">
+                {{ form_widget(formUser.department_tmp)}}
+            </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <div class="departmentSelector">
+                <button type="button" class="btn btn-primary" style="width:100%;" onclick="changeOption('department', 1);">{{'other'|trans}}</button>
+            </div>
+            <div class="departmentInput" style="display: none;">
+                <button type="button" class="btn btn-primary" style="width:100%;" onclick="changeOption('department', 0);">{{'existing'|trans}}</button>
+            </div>
+        </div>   
+    </div>
+    
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            <div class="groupSelector">
+                {{ form_label(formUser.group)}}
+            </div>
+            <div class="groupInput" style="display: none;">
+                {{ form_label(formUser.groupName_tmp)}}
+                <div style='font-weight: lighter;'>{{'groupName.info'|trans}}</div>
+            </div>
+        </label>
+        <div class="col-xs-10  col-sm-10 col-md-5 col-lg-6">
+            <div class="groupSelector">
+                {{ form_widget(formUser.group)}}
+            </div>
+            <div class="groupInput" style="display: none;">
+                {{ form_widget(formUser.groupName_tmp)}}
+            </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <div class="groupSelector">
+                <button type="button" class="btn btn-primary" style="width:100%;" onclick="changeOption('group', 1);">{{'other'|trans}}</button>
+            </div>
+            <div class="groupInput" style="display: none;">
+                <button type="button" class="btn btn-primary" style="width:100%;" onclick="changeOption('group', 0);">{{'existing'|trans}}</button>
+            </div>
+        </div>   
+    </div>
+            
+    <div class="groupInput" style="display: none;">
+
+        <div class="form-group row">
+            <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+                {{ form_label(formUser.leader)}}
+            </label>
+            <div class="col-xs-10  col-sm-10 col-md-5 col-lg-6">
+                <div class="leaderSelector">
+                    {{ form_widget(formUser.leader)}}
+                </div>
+                <div class="leaderInput" style="display: none;">
+                    {{ form_widget(formUser.groupLeader_tmp)}}
+                </div>
+            </div> 
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <div class="leaderSelector">
+                    <button type="button" class="btn btn-primary" style="width:100%;" onclick="changeOption('leader', 1);">{{'other'|trans}}</button>
+                </div>
+                <div class="leaderInput" style="display: none;">
+                    <button type="button" class="btn btn-primary" style="width:100%;" onclick="changeOption('leader', 0);">{{'existing'|trans}}</button>
+                </div>
+            </div>   
+        </div>
+
+        <div class="form-group row">
+            <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+                {{ form_label(formUser.groupCode_tmp)}}
+            </label>
+            <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+                {{ form_widget(formUser.groupCode_tmp)}}
+            </div>    
+        </div>
+
+        <div class="form-group row">
+            <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+                {{ form_label(formUser.groupWebsite_tmp)}}
+            </label>
+            <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+                {{ form_widget(formUser.groupWebsite_tmp)}}
+            </div>    
+        </div>
+    </div>
+            
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formUser.softwareSpecifications)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formUser.softwareSpecifications)}}
+        </div>    
+    </div>
+    
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formUser.description)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formUser.description)}}
+        </div>    
+    </div>
+        
+    <div class="form-group row">
+        <div class="col-xs-12 controls">
+            {{ form_widget(formUser.save)}}
+        </div>    
+    </div>
+    
+{{ form_end(formUser) }}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $({{ formUser.vars.name }}).submit(function(e){
+            e.preventDefault();
+            var formSerialize = $(this).serialize();
+            var url = $({{ formUser.vars.name }}).prop('action');
+            $.post(url, formSerialize, function(response){
+                if(!response.error){
+                    $("#verifyUserModal").modal('hide');
+                    displayNotice(response.message, 'successSection');
+                    //we have to add the new element to the grid, for that we update the actual page
+                    updateJpTable('tableUsersRegistered');
+                    displayCommand(response.command);
+                }else{
+                    $({{ formUser.vars.name }}).replaceWith(response.html_form);
+                    $('#verifyUserModal').animate({
+                      scrollTop: 0
+                    }, 1000);
+                }
+            },'JSON');
+        });
+        
+        //when the page is loaded we have to restore the new centre / department / group view
+        changeOption('center', $('#userVerification_newCentre').val());
+        changeOption('department', $('#userVerification_newDepartment').val());
+        changeOption('group', $('#userVerification_newGroup').val());
+        changeOption('leader', $('#userVerification_newLeader').val());
+    });
+    
+    function changeOption(element, command){
+        command = parseInt(command);
+        switch(element){
+            case 'center':
+                $('#userVerification_newCentre').val(command);
+                if(command){
+                    $('.centreSelector').css('display', 'none');
+                    $('.centreSelector select').val('');
+                    $('.centreInput').css('display', 'block');
+                    return true;
+                }
+                $('.centreSelector').css('display', 'block');
+                $('.centreInput').css('display', 'none');
+                $('.centreInput input').val('');
+                break;
+            case 'department':
+                $('#userVerification_newDepartment').val(command);
+                if(command){
+                    $('.departmentSelector').css('display', 'none');
+                    $('.departmentSelector select').val('');
+                    $('.departmentInput').css('display', 'block');
+                    return true;
+                }
+                $('.departmentSelector').css('display', 'block');
+                $('.departmentInput').css('display', 'none');
+                $('.departmentInput input').val('');
+                break;
+            case 'group':
+                $('#userVerification_newGroup').val(command);
+                if(command){
+                    $('.groupSelector').css('display', 'none');
+                    $('.groupSelector select').val('');
+                    $('.groupInput').css('display', 'block');
+                    return true;
+                }
+                $('.groupSelector').css('display', 'block');
+                $('.groupInput').css('display', 'none');
+                $('.groupInput input').val('');
+                break;
+            case 'leader':
+                $('#user_newLeader').val(command);
+                if(command){
+                    $('.leaderSelector').css('display', 'none');
+                    $('.leaderSelector select').val('');
+                    $('.leaderInput').css('display', 'block');
+                    return true;
+                }
+                $('.leaderSelector').css('display', 'block');
+                $('.leaderInput').css('display', 'none');
+                $('.leaderInput input').val('');
+                break;
+        }
+    }
+</script>

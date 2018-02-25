@@ -1,0 +1,27 @@
+email.exist: El E-Mail introducido ya se encuentra registrado en el sistema.
+username.exist: El Nombre de usuario introducido ya se encuentra registrado en el sistema.
+name.empty: El campo "Nombre" no puede estar vacío.
+lastname.empty: El campo "Apellidos" no puee estar vacío.
+phone.empty: El campo "Teléfono" no puede estar vacío.
+email.empty: El campo "E-Mail" no puede estar vacío.
+email.invalid: El campo "E-Mail" tiene un formato incorrecto.
+centre.empty: El campo "Centro" no puede estar vacío.
+centre.name.used: Ya existe en el sistema un centro con ese nombre.
+department.empty: El campo "Departamento" no puede estar vacío.
+department.name.used: Ya existe en el sistema un departamento con ese nombre.
+groupName.empty: El campo "Nombre del grupo" no puede estar vacío.
+groupCode.empty: El campo "Código del grupo" no puede estar vacío.
+groupCode.maxLength: El campo "Código del grupo" puede tener un tamaño máximo de 12 caracteres.
+groupLeader.empty: El campo "Responsable del grupo" no puede estar vacío.
+group.name.used: Ya existe en el sistema un grupo con ese nombre.
+leader.name.used: Ya existe en el sistema un responsable con ese nombre.
+position.empty: El campo "Cargo" no puede estar vacío.
+captcha.error: El campo "Captcha" es incorrecto.
+username.empty: El campo "Nombre de usuario" no puede estar vacío. 
+password.empty.empty: El campo "Contraseña" no puede estar vacío. 
+centre.name.empty: El campo "Nombre" no puede estar vacío.
+department.name.empty: El campo "Nombre" no puede estar vacío.
+leader.name.empty: El campo "Nombre" no puede estar vacío.
+groupCode.empty: El campo "Código de grupo" no puede estar vacío.
+usingTime.empty: El campo "Tiempo de uso del cluster" no puede estar vacío.
+group.empty: El campo "Grupo" no puede estar vacío.

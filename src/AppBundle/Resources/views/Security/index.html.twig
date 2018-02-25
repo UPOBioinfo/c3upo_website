@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block css %}    
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    
+{% endblock %}
+
+{% block body %} 
+    <div class="formLogin row m-0">
+        <div id="formLoginContent" class="col-xs-8 col-xs-offset-2">
+            <div class="row vertical-offset-200">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+                    <h2><i>{{'loginAdmin'|trans}}</i></h2>
+                    <div class="loginBox">
+                        {% if error %}
+                            <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
+                        <form role="form" action="{{ path('login_check') }}" method="post">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" type="text" id="username" placeholder="{{ "username.placeholder" | trans }}" name="_username" value="{{ last_username }}" />
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="password" id="password" placeholder="{{ "password.placeholder" | trans}}" name="_password" />
+                                </div>
+                                <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login">
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{%endblock%}

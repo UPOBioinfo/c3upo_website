@@ -1,0 +1,164 @@
+
+{{ form_start(formProfile) }}
+
+    <div>{{ form_errors(formProfile)}}</div>
+    <div id='formEditUserErrorSection'>
+    {% if not formProfile.vars.valid %}
+        <div class="alert alert-danger errorSection" role="alert">
+            <div>{{ form_errors(formProfile.name) }}</div>
+            <div>{{ form_errors(formProfile.lastname) }}</div>
+            <div>{{ form_errors(formProfile.position) }}</div>
+            <div>{{ form_errors(formProfile.phone) }}</div>
+            <div>{{ form_errors(formProfile.email) }}</div>
+            <div>{{ form_errors(formProfile.usingTime) }}</div>
+            <div>{{ form_errors(formProfile.username) }}</div>
+            <div>{{ form_errors(formProfile.centre) }}</div>
+            <div>{{ form_errors(formProfile.department) }}</div>
+            <div>{{ form_errors(formProfile.group) }}</div>
+            <div>{{ form_errors(formProfile.softwareSpecifications) }}</div>
+            <div>{{ form_errors(formProfile.description) }}</div>
+        </div>
+    {% endif %}
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formProfile.name)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formProfile.name)}}
+        </div>    
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formProfile.lastname)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formProfile.lastname)}}
+        </div>    
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formProfile.position)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formProfile.position)}}
+        </div>    
+    </div>
+        
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formProfile.phone)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formProfile.phone)}}
+        </div>    
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formProfile.email)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formProfile.email)}}
+        </div>    
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formProfile.usingTime)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formProfile.usingTime)}}
+        </div>    
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formProfile.username)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formProfile.username)}}
+        </div>    
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formProfile.centre)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formProfile.centre)}}
+        </div>
+    </div>
+            
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formProfile.department)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formProfile.department)}}
+        </div>
+    </div>
+    
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formProfile.group)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formProfile.group)}}
+        </div> 
+    </div>
+            
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formProfile.softwareSpecifications)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formProfile.softwareSpecifications)}}
+        </div>    
+    </div>
+    
+    <div class="form-group row">
+        <label class="col-xs-12 col-sm-12 col-md-5 col-lg-4 control-label">
+            {{ form_label(formProfile.description)}}
+        </label>
+        <div class="col-xs-12  col-sm-12 col-md-7 col-lg-8">
+            {{ form_widget(formProfile.description)}}
+        </div>    
+    </div>
+        
+    <div class="form-group row">
+        <div class="col-xs-12 controls">
+            {{ form_widget(formProfile.save)}}
+        </div>    
+    </div>
+    
+{{ form_end(formProfile) }}
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $({{ formProfile.vars.name }}).submit(function(e){
+            e.preventDefault();
+            var formSerialize = $(this).serialize();
+            var url = $({{ formProfile.vars.name }}).prop('action');
+            $.post(url, formSerialize, function(response){
+                if(!response.error){
+                    $("#editUserModal").modal('hide');
+                    displayNotice(response.message, 'successSection');
+                    //we have to add the new element to the grid, for that we update the actual page
+                    updateJpTable('tableUsersRegistered');
+                    displayCommand(response.command);
+                }else{
+                    $({{ formProfile.vars.name }}).replaceWith(response.html_form);
+                    $('#editUserModal').animate({
+                      scrollTop: 0
+                    }, 1000);
+                }
+            },'JSON');
+        });
+        
+    });
+    
+</script>

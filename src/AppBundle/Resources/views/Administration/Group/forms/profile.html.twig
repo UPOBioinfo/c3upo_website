@@ -1,0 +1,85 @@
+{{ form_start(profileGroup) }}
+
+    <div id="formEditGroupErrorSection">
+        {% if not profileGroup.vars.valid %}
+            <div class="alert alert-danger errorSection" role="alert">
+                <div>{{ form_errors(profileGroup.name) }}</div>
+                <div>{{ form_errors(profileGroup.leader) }}</div>
+                <div>{{ form_errors(profileGroup.code) }}</div>
+                <div>{{ form_errors(profileGroup.website) }}</div>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-3 control-label">
+            {{ form_label(profileGroup.name)}}
+        </label>
+
+        <div class="col-xs-9 controls cleanableinput">
+            {{ form_widget(profileGroup.name)}}
+        </div>    
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xs-3 control-label">
+            {{ form_label(profileGroup.leader)}}
+        </label>
+        
+        <div class="col-xs-9 controls cleanableinput">
+            {{ form_widget(profileGroup.leader)}}
+        </div>    
+    </div>
+        
+    <div class="form-group row">
+        <label class="col-xs-3 control-label">
+            {{ form_label(profileGroup.code)}}
+        </label>
+        
+        <div class="col-xs-9 controls cleanableinput">
+            {{ form_widget(profileGroup.code)}}
+        </div>    
+    </div>
+    
+    <div class="form-group row">
+        <label class="col-xs-3 control-label">
+            {{ form_label(profileGroup.website)}}
+        </label>
+        
+        <div class="col-xs-9 controls cleanableinput">
+            {{ form_widget(profileGroup.website)}}
+        </div>    
+    </div>
+        
+    <div class="form-group row">
+        <div class="col-xs-12 controls">
+            {{ form_widget(profileGroup.save)}}
+        </div>    
+    </div>
+{{ form_end(profileGroup) }}
+        
+    
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $({{ profileGroup.vars.name }}).submit(function(e){
+            e.preventDefault();
+            var formSerialize = $(this).serialize();
+            var url = $({{ profileGroup.vars.name }}).prop('action');
+            $.post(url, formSerialize, function(response){
+                if(!response.error){
+                    $("#editGroupModal").modal('hide');
+                    displayNotice(response.message, 'successSection');
+                    //we have to add the new element to the grid, for that we update the actual page
+                    updateJpTable('tableGroups');
+                    displayCommand(response.command);
+                }else{
+                    $({{ profileGroup.vars.name }}).replaceWith(response.html_form);
+                    $('#editGroupModal').animate({
+                      scrollTop: 0
+                    }, 1000);
+                }
+            },'JSON');
+        });
+    });
+</script>

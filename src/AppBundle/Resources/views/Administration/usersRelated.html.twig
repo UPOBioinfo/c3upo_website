@@ -1,0 +1,30 @@
+<div id="usersRelatedModal" class="modal fade usersRelatedModal" {#tabindex="-1"#} role="dialog">
+    <div class="modal-dialog" style='width:95%;'>
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel">{{'usersRelated' | trans}} <span id='itemSelected'></span> "<span id='itemSelectedName' style="font-weight: bold;"></span>"</h3>
+            </div>  
+            <div class="modal-body">
+                <input type='hidden' id='userRelated-id'>
+                <input type='hidden' id='userRelated-cmd'>
+                <div class="formContent" style='overflow-y:auto;'></div>
+            </div>
+        </div>
+    </div>
+</div>
+            
+<script type="text/javascript">
+    $(document).ready(function(){
+         $("#usersRelatedModal").on('show.bs.modal', function(event){
+
+            var url = "{{ path('adminstration_getUsers_by', {'cmd':'cmd', 'id': 'centreId'}) }}";
+            url = url.replace('cmd', $('#userRelated-cmd').val());
+            url = url.replace('centreId', $('#userRelated-id').val());
+            $.post(url, '', function(response){
+                $("#usersRelatedModal .modal-body .formContent").html(response.users);
+            }, 'json');
+        });
+        
+    });
+</script>

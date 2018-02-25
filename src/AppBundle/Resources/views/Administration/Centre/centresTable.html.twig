@@ -1,0 +1,122 @@
+<div id="centresTabSection">
+    <button id="newCentre" class="btn btn-primary"><i class="fa fa-plus"></i> {{'newCentre'|trans}}</button>
+    <button id="editCentre" class="btn btn-primary disabled"><i class="fa fa-pencil"></i> {{'editCentre'|trans}}</button>
+    <button id="removeCentre" class="btn btn-danger disabled"><i class="fa fa-remove"></i> {{'removeCentre'|trans}}</button>
+    <button id="usersRelatedCentre" class="btn btn-primary disabled"><i class="fa fa-list-alt"></i> {{'usersRelatedCentre'|trans}}</button>
+    
+    <table id="tableCentres" class="table">
+
+    </table>
+    
+    {{ include('AppBundle:Administration/Centre/modals:createCentre.html.twig') }}
+    {{ include('AppBundle:Administration/Centre/modals:editCentre.html.twig') }}
+    {{ include('AppBundle:Administration/Centre/modals:deleteCentre.html.twig') }}
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        // TO CREATE THE CENTRE'S TABLE
+        $('#tableCentres').bootstrapTable({
+            url: "{{path('administration_get_centres_table')}}",
+            pagination:true,
+            search:true,
+            showColumns:true,
+            showRefresh:true,
+            clickToSelect:true,
+            singleSelect:true,
+            showExport:true,
+            exportDataType: 'all',
+            searchAccentNeutralise: true,
+            filterControl: true,
+            stickyHeader:true,
+            stickyHeaderOffsetY:"0px",
+            pageSize: 25,
+            iconsPrefix: 'fa',
+            icons: {
+                refresh: 'fa-refresh',
+                columns: 'fa-th',
+                export: 'fa-download'
+            },
+            columns: [
+                {
+                    field: 'selector',
+                    checkbox: true,
+                    class: 'smallColumn'
+                },
+                {
+                    field: 'id',
+                    title: '{{'ID'|trans}}',
+                    sortable: true,
+                    class: 'smallColumn',
+                    filterControl: 'input'
+                }, {
+                    field: 'name',
+                    title: '{{'label.name'|trans}}',
+                    sortable: true,
+                    class: 'bigColumn',
+                    filterControl: 'input'
+                }
+            ]
+        });
+        
+        //to enable / disable the edit and remove buttons
+        $('#tableCentres').on('check.bs.table', function (e, element, args) {
+            $('#editCentre').removeClass('disabled');
+            $('#removeCentre').removeClass('disabled');
+            $('#usersRelatedCentre').removeClass('disabled');
+            //to set the id of the selected centre for the edition
+            $('#editCentreModal-centreId').val(element.id);
+            //to set the id & name of the selected centre for the deletion
+            $('#deleteCentreModal-centreId').val(element.id);
+            $('#deleteCentreName').html(element.name);
+            //to set the id for the related users
+            $('#userRelated-id').val(element.id);
+            $('#itemSelectedName').html(element.name);
+            
+        }).on('uncheck.bs.table', function(e, element, args){
+            $('#editCentre').addClass('disabled');
+            $('#removeCentre').addClass('disabled');
+            $('#usersRelatedCentre').addClass('disabled');
+            //to clean the id of the selected centre for the edition
+            $('#editCentreModal-centreId').val('');
+            $('#deleteCentreModal-centreId').val('');
+            $('#deleteCentreName').html('');
+            $('#userRelated-id').val('');
+            $('#itemSelectedName').html('');
+            
+        }).on('load-success.bs.table', function(){
+            $('#editCentre').addClass('disabled');
+            $('#removeCentre').addClass('disabled');
+            $('#usersRelatedCentre').addClass('disabled');
+            //to clean the id of the selected centre for the edition
+            $('#editCentreModal-centreId').val('');
+            $('#deleteCentreModal-centreId').val('');
+            $('#deleteCentreName').html('');
+            $('#userRelated-id').val('');
+            $('#itemSelectedName').html('');
+        });
+        
+        
+        //to open the creation popup when clicking on "new centre"
+        $('#newCentre').click(function(){
+            $("#createCentreModal").modal();
+        });
+        
+        //to open the edition popup when clicking on "edit centre"
+        $('#editCentre').click(function(){
+            $("#editCentreModal").modal();
+        });
+        
+        //to open the deletion popup when clicking on "remove centre"
+        $('#removeCentre').click(function(){
+            $("#deleteCentreModal").modal();
+        });
+        
+        //to open the table with the users related with the selected centre
+        $('#usersRelatedCentre').click(function(){
+            $('#itemSelected').html('{{'centre'|trans}}');
+            $('#userRelated-cmd').val('centre');
+            $("#usersRelatedModal").modal();
+        });
+    });
+</script>

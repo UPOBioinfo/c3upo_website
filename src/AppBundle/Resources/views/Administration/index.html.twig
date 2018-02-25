@@ -1,0 +1,75 @@
+{% extends 'AppBundle::base.html.twig' %}
+
+{% block css %}    
+    {{ parent() }}
+    <link rel="stylesheet" href="{{asset('css/bootstrap-table.css') }}">
+    <link rel="stylesheet" href="{{asset('js/bootstrap-table-extensions/sticky-header/bootstrap-table-sticky-header.css') }}">
+    <link rel="stylesheet" href="{{asset('js/bootstrap-table-extensions/filter-control/bootstrap-table-filter-control.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- Table -->
+    <script type="text/javascript" src="{{ asset ('js/main.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('js/bootstrap-table.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('js/bootstrap-table-locale/bootstrap-table-es-SP.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('js/bootstrap-table-extensions/accent-neutralise/bootstrap-table-accent-neutralise.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('js/bootstrap-table-extensions/filter-control/bootstrap-table-filter-control.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('js/bootstrap-table-extensions/export/bootstrap-table-export.js') }}"></script>
+{#    <script type="text/javascript" src="{{ asset ('js/bootstrap-table-extensions/export/export.js') }}"></script>#}
+    <script type="text/javascript" src="{{ asset ('js/bootstrap-table-extensions/export/dependencies/libs/FileSaver/FileSaver.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('js/bootstrap-table-extensions/export/dependencies/libs/js-xlsx/xlsx.core.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('js/bootstrap-table-extensions/export/dependencies/libs/jsPDF/jspdf.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('js/bootstrap-table-extensions/export/dependencies/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('js/bootstrap-table-extensions/export/dependencies/tableExport.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset ('js/bootstrap-table-extensions/sticky-header/bootstrap-table-sticky-header.js') }}"></script>
+    
+{% endblock %}
+
+{% block contentSection %} 
+    <div class="row m-0">
+        <div class="col-lg-2 col-lg-offset-1 col-md-3 col-md-offset-1 col-sm-4 col-sm-offset-1 col-xs-5 col-xs-offset-1">
+            <ul class="nav nav-stacked" id="administrationTabs">
+                <li class="active"><a data-toggle="tab" href="#users">{{'users'|trans}}</a></li>
+                <li><a data-toggle="tab" href="#centres">{{'centres'|trans}}</a></li>
+                <li><a data-toggle="tab" href="#departments">{{'departments'|trans}}</a></li>
+                <li><a data-toggle="tab" href="#leaders">{{'leaders'|trans}}</a></li>
+                <li><a data-toggle="tab" href="#groups">{{'groups'|trans}}</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-8 col-md-7 col-sm-6 col-xs-5" style="margin-left:-13px;">
+            <div class="tab-content" id="administrationSection">
+                <span class="activeArrow"></span>
+                <div id="users" class="tab-pane fade in active">
+                    {{ include('AppBundle:Administration/User:registerTable.html.twig') }}
+                </div>
+                <div id="centres" class="tab-pane fade">
+                    {{ include('AppBundle:Administration/Centre:centresTable.html.twig') }}
+                </div>
+                <div id="departments" class="tab-pane fade">
+                    {{ include('AppBundle:Administration/Department:departmentsTable.html.twig') }}
+                </div>
+                <div id="leaders" class="tab-pane fade">
+                    {{ include('AppBundle:Administration/Leader:leadersTable.html.twig') }}
+                </div>
+                <div id="groups" class="tab-pane fade">
+                    {{ include('AppBundle:Administration/Group:groupsTable.html.twig') }}
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+    {{ include('AppBundle:Administration:usersRelated.html.twig') }}
+    {{ include('AppBundle:Administration:extraInfo.html.twig') }}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#administrationTabs li').on('click', function(event){
+    {#                var top = event.target.offsetTop + 'px';#}
+                    var top = ($(this).offset().top-100) + 'px';
+                    $('.activeArrow').css('top', top);
+
+                });
+        });
+    </script>
+{% endblock %}

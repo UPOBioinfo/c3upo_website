@@ -1,0 +1,351 @@
+#Register section
+label.name: Nombre
+label.lastname: Apellidos
+label.phone: Teléfono
+label.email: E-Mail
+label.username: Nombre de usuario en el cluster
+label.centre: Centro
+label.department: Departamento
+label.groupName: Nombre del grupo
+label.groupCode: Código del grupo (12 letras máximo)
+label.groupWebsite: Página web del grupo
+label.groupLeader: Responsable del grupo
+label.position: Cargo
+label.softwareSpecifications: Software a utilizar
+label.description: Breve descripción del uso que se hará
+label.group: Grupo
+label.usingTime: Tiempo de uso del cluster
+submit: Enviar
+other: Otro
+existing: Existente
+user.created.success: La solicitud de registro se ha procesado correctamente.
+requiredField: Campos requeridos
+registerInfo: Registro para el acceso a los recursos computacionales del C3UPO
+groupName.info:  (por favor, pregunta a tu responsable)
+
+#Form placeholders
+placeholder.selectCenter: Selecciona un centro
+placeholder.selectDepartment: Selecciona un departamento
+placeholder.selectGroup: Selecciona un grupo
+placeholder.selectUsingTime: Selecciona por cuanto tiempo quieres tener acceso al cluster
+placeholder.selectLeader: Selecciona un responsable del grupo
+placeholder.name: Nombre
+placeholder.lastname: Apellidos
+placeholder.phone: Número de teléfono
+placeholder.email: Dirección de correo electrónico
+placeholder.centreName: Nombre del centro al que perteneces (Ej. Facultad de Ciencias Experimentales)
+placeholder.departmentName: Nombre del departamento al que perteneces (Ej. Biología Molecular e Ingeniería Bioquímica)
+placeholder.groupName: Nombre del grupo al que perteneces
+placeholder.groupLeader: Responsable del grupo al que perteneces
+placeholder.groupWebsite: Página web del grupo al que perteneces
+placeholder.groupCode: Código de su grupo
+placeholder.position: Cargo que desempeña en el grupo
+placeholder.softwareSpecification: Software que necesita que esté instalado en el cluster para poder hacer uso de él.
+placeholder.description: Breve descripción del uso que le dará al cluster
+
+#Using time
+1_MONTH: 1 mes
+6_MONTHS: 6 meses
+1_YEAR: 1 año
+4_YEAR: 4 años
+UNLIMITED: Ilimitado
+
+#Login
+username.placeholder: Nombre de usuario
+password.placeholder: Contraseña
+loginAdmin: Acceso al área de administración
+
+#admin
+label.username.short: Usuario cluster
+label.groupLeader.short: Responsable grupo
+label.groupCode.short: Código grupo
+label.groupWebsite.short: Web del grupo
+label.description.short: Descripción
+label.isClusterUser: Alta en cluster
+label.isActiveUser: Activo en cluster
+label.centre_tmp: Centro (manual)
+label.department_tmp: Departamento (manual)
+label.groupName_tmp: Nombre del grupo (manual)
+label.groupLeader_tmp: Responsable del grupo (manual)
+label.groupCode_tmp: Código del grupo (manual)
+label.groupWebsite_tmp: Web del grupo (manual)
+label.isInDistributionList: Lista de distribucion
+isClusterUser_0: No
+isClusterUser_1: Sí
+isUserActive_0: No
+isUserActive_1: Sí
+isInDistributionList_0: No
+isInDistributionList_1: Sí
+users: Usuarios
+centres: Centros
+departments: Departamentos
+groups: Grupos
+leaders: Responsables
+registerAsClusterUser: Registrar como usuario del cluster
+disableUser: Bloquear usuario
+enableUser: Activar usuario
+centre: centro
+department: departamento
+group: grupo
+legend.tableColors: 'Leyenda de colores'
+legend.red: Usuario pendiente de verificación (Alta en cluster = No).
+legend.orange: Usuario verificado, sin acceso al cluster pero en la lista de distribución (Alta en cluster = Sí, Activo en cluster = No, Lista de distribución = Sí).
+legend.yellow: Usuario verificado, activo en el cluster y no está en la lista de distribución (Alta en cluster = Sí, Activo en cluster = Sí, Lista de distribución = No).
+legend.grey: Usuario verificado, sin acceso al cluster y no está en la lista de distribución (Alta en cluster = Sí, Activo en cluster = No, Lista de distribución = No).
+legend.green: Usuario verificado, dado de alta en el cluster y en la lista de distribución (Alta en cluster = Sí, Activo en cluster = Sí, Lista de distribución = Sí).
+legend.ok: Ok
+legend.review: Revisar
+
+#Buttons
+newCentre: Nuevo centro
+editCentre: Editar centro
+removeCentre: Eliminar centro
+newDepartment: Nuevo departamento
+editDepartment: Editar departamento
+removeDepartment: Eliminar departamento
+newGroup: Nuevo grupo
+editGroup: Editar grupo
+removeGroup: Eliminar grupo
+newLeader: Nuevo responsable
+editLeader: Editar responsable
+removeLeader: Eliminar responsable
+editUser: Editar usuario
+distributionList: Lista de distribución
+accept: Aceptar
+close: Cerrar
+clusterUsers: Usuarios registrados en el cluster
+pendingUsers: Usuarios pendientes de verificación
+allUsers: Todos los usuarios
+allUsersInCluster: Todos los usuarios del cluster
+activeUsersInCluster: Usuarios activos en el cluster
+disabledUsersInCluster: Usuarios bloqueados en el cluster
+verifyUser: Verificar usuario
+usersRelatedCentre: Usuarios relacionados con el centro
+usersRelatedDepartment: Usuarios relacionados con el departamento
+usersRelatedGroup: Usuarios relacionados con el grupo
+usersRelated: Usuarios relacionados con el
+addDistributionList: Añadir a lista de distribución
+removeDistributionList: Eliminar de la lista de distribución
+
+#Remove messages
+delete.centre.text1: Usted va a eliminar del sistema el centro
+delete.centre.confirm: ¿Está seguro?
+delete.department.text1: Usted va a eliminar del sistema el departamento
+delete.department.confirm: ¿Está seguro?
+delete.group.text1: Usted va a eliminar del sistema el departamento
+delete.group.confirm: ¿Está seguro?
+delete.leader.text1: Usted va a eliminar del sistema al responsable
+delete.leader.confirm: ¿Está seguro?
+
+#Enable/disable messages
+disableUserText: Usted va a marcar como usuario bloqueado en el cluster a 
+enableUserText: Usted va a marcar como usuario activo en el cluster a 
+enableUserText.confirm: ¿Está seguro?
+
+#Enable/disable in distribution list
+addUserToDistributionListText: Usted va a marcar como usuario de la lista de distribución al usuario 
+removeUserFromDistributionListText: Usted va a marcar que se ha eliminado de la lista de distribución al usuario 
+distributionListText.confirm: ¿Está seguro?
+
+#Success messages
+centre.created.success: Centro creado correctamente.
+centre.updated.success: Centro actualizado correctamente.
+centre.deleted.success: El centro ha sido eliminado correctamente.
+department.created.success: Departamento creado correctamente.
+department.updated.success: Departamento actualizado correctamente.
+department.deleted.success: El departamento ha sido eliminado correctamente.
+group.created.success: Grupo creado correctamente.
+group.updated.success: Grupo actualizado correctamente.
+group.deleted.success: El grupo ha sido eliminado correctamente.
+leader.created.success: Responsable creado correctamente.
+leader.updated.success: Responsable actualizado correctamente.
+leader.deleted.success: El responsable ha sido eliminado correctamente.
+user.verify.success: El usuario ha sido marcado registrado correctamente como usuario del cluster.
+userStatus.updated.success: El usuario ha sido marcado como activo en el cluster.
+user.updated.success: La información del usuario ha sido actualizada correctamente.
+distributionListStatus.updated.success: El usuario ha sido marcado como perteneciente a la lista de distribución.
+
+#Error messages
+error.deleting.centre: El centro seleccionado no pudo ser eliminado porque hay usuarios relacionados con él.
+error.deleting.department: El departamento seleccionado no pudo ser eliminado porque hay usuarios relacionados con él.
+error.deleting.group: El grupo seleccionado no pudo ser eliminado porque hay usuarios relacionados con él.
+error.deleting.leader: El responsable seleccionado no pudo ser eliminado porque hay grupos relacionados con él.
+error.updating.userStatus: El usuario no ha podido ser marcado como activo en el cluster.
+error.updating.distributionListStatus: El usuario no ha podido ser marcado como añadido a la lista de distribución.
+
+#Personal error messages
+centre.empty: El campo "Centro" no puede estar vacío.
+group.empty: El campo "Grupo" no puede estar vacío.
+groupName.empty: El campo "Nombre del grupo" no puede estar vacío.
+groupCode.empty: El campo "Código del grupo" no puede estar vacío.
+groupLeader.empty: El campo "Responsable del grupo" no puede estar vacío.
+
+#Related users
+noUsers: No se han encontrado usuarios relacionados
+
+#Linux command
+linux.command: Acciones requeridas
+
+#Emails
+email.newRegistration.subject: "[C3UPO_CLUSTER] - Nuevo registro"
+email.NewRegistration.body: "Se ha registrado un nuevo usuario en el sistema: "
+
+
+######################### System ino
+clusterInfo: Información sobre el cluster
+clusterUsage: Cómo usar el cluster
+clusterRegistration: Registrarse
+
+loading: Cargando...
+
+## Cluster information section
+welcomeClusterInfo: Bienvenido a la página informativa del cluster del C3UPO
+clusterInfo.intro: "Introducción:"
+clusterInfo.text1: El C3UPO dispone de un cluster de supercomputación, el cual ofrece servicios a diferentes grupos de investigación para facilitar cálculos científicos.
+clusterInfo.text2: El cluster ofrece herramientas específicas para los diferentes grupos de investigación, de esta forma se facilita el trabajo al investigador ya que puede trabajar en un entorno sin necesidad de migrar datos de un lugar a otro.
+clusterInfo.hardware: "Características hardware:"
+clusterInfo.nodes: 14 nodos de cálculo 
+clusterInfo.cores: 336 (14 nodos x 24 cores/nodo) cores de cáculo
+clusterInfo.connection: ?? Infiniband QDR/FDR interconnection network. - - conectados como (Infiniband DDR a 20Gbit/seg)???
+clusterInfo.memory: 128GB de memoria RAM
+clusterInfo.capacityShared: Capacidad de 4.5TB en un sistema de ficheros compartidos Beegfs
+clusterInfo.queue: SLURM (Simple Linux Utility for Resource Management) como sistema de colas
+clusterInfo.os: Sistema Operativo CentOS Linux 7.2
+clusterInfo.power: ?? xx TFlops de potencia de cálculo
+clusterInfo.software: "Software instalado:"
+clusterInfo.programmingLanguagues: "Lenguajes de programación soportados:"
+clusterInfo.perl: Perl
+clusterInfo.python: Python
+clusterInfo.php: PHP
+clusterInfo.java: Java
+clusterInfo.ruby: Ruby
+clusterInfo.math: Matemáticas
+clusterInfo.physic: Física
+clusterInfo.chemistry: Química
+clusterInfo.bioinformatics: Bioinformática
+clusterInfo.parallel: Sistema de paralelización
+clusterInfo.OPENMPI: OpenMPI
+clusterInfo.extraInfo: Si tiene necesidades específicas no dude en contactar con nosotros a través de la dirección
+clusterInfo.extraInfoTemp: <b>Nota:</b> En breve se instalarán los programas requeridos por los usuarios del cluster.
+
+##### How to section
+clusterHowTo.intro: Cómo hacer uso del cluster de supercomputación
+clusterHowTo.text1: Registro en el cluster
+clusterHowTo.text2: Para poder comenzar a hacer uso del cluster de supercomputación del C3UPO primero debe registrarse en la pestaña <a onclick="openTab('loadRegistration');"><b>Registrarse</b></a>, la petición será recibida por el equipo técnico y se pondrán en contacto con usted para facilitarle un nombre de usuario y una contraseña temporal de acceso al sistema.
+clusterHowTo.text3: Conexión al cluster
+clusterHowTo.text4: "Para poder hacer uso del cluster es necesario acceder mediante ssh al nodo principal a través del dominio hpccluster.upo.es. Si está trabajando con Linux o MacOs puede hacer uso del terminal, en caso de usar Windows puede usar alguna herramienta como PuTTY o Cygwin."
+clusterHowTo.access: "> ssh usuario@hpccluster.upo.es"
+clusterHowTo.text5: Una vez el acceso se realice correctamente el usuario se encontrará en su carpeta HOME (/home/usuario) dentro del nodo0, donde estarán los ficheros que vaya generando. En este nodo <b>no</b> se debe de ejectuar ningún programa, para ello se deben de usar el resto de nodos como veremos a continuación.
+clusterHowTo.text6: Uso del cluster
+clusterHowTo.text7: |
+                    El cluster cuenta con un sistema de colas que es el encargado de repartir las diferentes tareas por los nodos existentes. De este modo el usuario, a través de una serie de comandos que veremos a continuación, sólo tendrá que lanzar su aplicación y el gestor de cola se encargará de encontrar nodos libres donde ejecutar los cálculos. En caso de que esten todos los nodos ocupados el gestor de cola se encargará de poner la tarea en espera y lanzarla cuando haya recursos disponibles, sin necesidad de que el usuario esté conectado esperando.
+                    <p>Para poder hacer un uso responsable del cluster hay que tener una serie de pautas en mente:</p>
+                    <ul>
+                     <li>No se deben instalar aplicaciones en el directorio <i>HOME</i>.</li>
+                     <li>No realizar cálculos en el nodo principal, nodo0.</li>
+                     <li>Cuando quiera hacer calculos en el cluster ejecute sus programas a través del gestor de colas.</li>
+                     <li>Reservar un número de nodos ajustado a las necesidades reales.</li>
+                     <li>Marcar un tiempo de ejecución acorde con los cálculos que se van a llevar a cabo, así se evitarán tareas consumiendo recursos de forma infinita.</li>
+                    </ul>
+clusterHowTo.text7b: |
+                    <p>Para intercambiar ficheros entre su máquina y el cluster puede usar dos métodos:</p>
+                    <ul>
+                    <li><b>scp:</b> Puede usar el comando <b>scp</b> en el terminal (sin estar conectado al cluster) para copiar ficheros entre las máquinas.</li>
+clusterHowTo.text7c: |
+                    <li><b>Cliente SFTP:</b> Puede usar un cliente SFTP como por ejemplo <b>Filezilla</b>. Para ello deberá descargar la aplicación en su equipo y usar sus credenciales de acceso al cluster. Una vez se conecte al cluster a través de la aplicación podrá navegar por su carpeta <i>home</i> e intercambiar ficheros entre su ordenador y el cluster.</li>
+                    </ul>
+
+clusterHowTo.copyFiles: |
+                        #Copiar un archivo local a un destino remoto
+                        > scp /ruta/archivo-origen usuario@hpccluster.upo.es:/ruta/directorio-destino/ <br>
+                        #Copiar un archivo de un ordenador remoto al ordenador local
+                        > scp usuario@hpccluster.upo.es:/ruta/archivo-origen /ruta/al/directorio-destino
+clusterHowTo.text8: Uso del sistema de colas
+clusterHowTo.slurm: A continuación se van a detallar algunos de los comandos más utiles para gestionar correctamente sus tareas en el cluster, en cualquier caso, para obtener más información sobre los comandos existentes puede visitar el manual de 
+clusterHowTo.text9: "Para ejecutar tareas en el cluster tiene principalmente 3 métodos:"
+clusterHowTo.text10: 1. Usar el comando <b>srun</b>
+clusterHowTo.text11: Con el comando <b>srun</b> se pueden ejecutar tareas en paralelo. Con este comando se puede especificar, entre otras cosas, en qué cola queremos añadir nuestro trabajo (p), cuántas veces se necesita que se ejecute la tarea (n) y en cuántos nodos (N). Además, también podemos darle un nombre al trabajo para poder localizar posteriormente con mayor facilidad (J).
+clusterHowTo.run: "> srun -n2 -N2 -p=UPO -J=user_task_run --label hostname"
+clusterHowTo.text12: 2. Usar el comando <b>salloc</b> 
+clusterHowTo.text13: Con el comando <b>salloc</b> se reserva un espacio en un conjunto de nodos y una vez hecha la reserva se ejecutan los comandos necesarios. Es importante tener en mente que para poder hacer un uso correcto del cluster y aprovechar los recursos los comandos hay que ejecutarlos haciendo uso de <b>srun</b>. Una vez que haya llevado a cabo las tareas hay que liberar los recursos reservados, para ello hay que ejecutar el comando <b>exit</b> o no serán liberados hasta salir del terminal. Al igual que con el comando <b>srun</b> se puede especificar en que cola queremos lanzar nuestro trabajo (p), cuántos nodos queremos reservar (N), en cuantos hilos queremos que se divida la tarea (n) y el nombre que se le quiere dar a la tarea (J). Una vez hemos reservado el espacio podemos lanzar srun con los comandos que necesitemos, sin necesidad de volver a especificar los valores.
+clusterHowTo.salloc: | 
+                     > salloc -n2 -N2 -p=UPO -J=user_task_salloc -t=10
+                     > srun --label hostname
+                     > exit
+clusterHowTo.text14: 3. Usar el comando <b>sbatch</b>
+clusterHowTo.text15: |
+                     Con el comando <b>sbatch</b> se envía a la cola un fichero batch. Por defecto tanto la salida del fichero como la salida con los errores serán almacenadas en un fichero llamado slurm-x.out donde "x" es el ID de la tarea asignada por el gestor de cola, dicho fichero se almacenará en el directorio de trabajo actual. Esto puede ser modificado a través de los parámetros <i>-e</i> para especificar dónde se quieren almacenar los errores y <i>-o</i> para indicar dónde se quiere almacenar la salida. Además, se pueden utilizar en el nombre del fichero las variables %A que será reemplezado con el ID de la tarea y %a que será sustituido por el índice del array.<br>
+                     En el fichero batch debe ir la información sobre la cola en la que se van a ejecutar los cálculos (p), en cuántos nodos (N) así como en cuantos hilos como máximo se puede dividir el trabajo (n). También se le puede dar un nombre a la tarea (J).
+clusterHowTo.text15Example1: |
+                     Se va a comenzar con un ejemplo de un programa que se va a ejecutar en un solo nodo y va a hacer uso de un solo core.
+clusterHowTo.text15Example2: |
+                     A continuación se muestra un ejemplo de un programa que se ejecuta en un solo nodo pero que hace uso de varios cores: <b>proceso multicore</b>. Para este ejemplo se va a utilizar <b>blastp</b> que permite ejecutarse en multicore y que tiene como curiosidad que además de especificar en el el script el número de hilos en los que se dividirá el trabajo (n) hay que especificarlo en el comando (num_threads). En caso de que no se especifique este valor en el comando se reservarán un número determinado de cores (n) que no serán utilizados; por lo que es importante recordar que sólo hay que reservar más de un core en caso de que el programa que vamos a ejecutar soporte multicore. También es importante recordar que hay programas, como por ejemplo blastp, que no pueden ser ejecutados en más de un nodo al mismo tiempo, por lo que si se especifica un N mayor que 1 se estarán reservando más nodos de los que se usarán, por lo que quedarán ociosos.
+clusterHowTo.text15b: |
+                     Es importante tener en mente el parámetro <b>--array</b>, el cual sirve para ejecutar el mismo trabajo múltiples veces. Para poder ejecutar el comando sbatch con este parámetro hay que especificar los índices del array, ya sea a través de una lista o especificando un rango. Este parámetro también soporta el separador %X con el cual se especifica que como máximo puede haber X iteraciones ejecutándose al mismo tiempo (este parámetro es opcional). Para poder hacer un uso completo de este parámetro es muy util la variable <i>SLURM_ARRAY_TASK_ID</i>, la cual indica la iteración actual del programa. Como se verá en el siguiente ejemplo esta variable puede servir para indicarle al programa de una forma dinámica los parámetros de entrada que debe tomar a la hora de ejecución. Es importante asegurarse de que existen los ficheros de entrada con el nombre de los índices que se especifican.
+clusterHowTo.sbatch: |
+                     Contenido del fichero <i>programa.sh</i>:
+                     <br><br>
+                     #Este programa va a llamar a un script que se va a ejecutar en un solo nodo y utilizará un solo core. <br>
+                     #!/bin/bash <br>
+                     #SBATCH -o /home/user/outputs/programa_output_%A.out <br>
+                     #SBATCH -e /home/user/errors/programa_error_%A.out <br>
+                     #SBATCH -p UPO <br>
+                     #SBATCH -N 1 <br>
+                     #SBATCH -n 1 <br>
+                     #SBATCH -J user_task_sbatch <br>
+                     script.sh <br>
+                     <br><br>
+                     > sbtach programa.sh
+clusterHowTo.sbatch2: |
+                     Contenido del fichero <i>programa.sh</i>:
+                     <br><br>
+                     #En este programa se va a hacer uso de un solo nodo pero se van a usar varios cores.
+                     #!/bin/bash <br>
+                     #SBATCH -p UPO <br>
+                     #SBATCH -N 1 <br>
+                     #SBATCH -n 6 <br>
+                     #SBATCH -J user_task_sbatch <br>
+                     blastp -query /home/username/data.fasta -db /mnt/beegfs/DB/uniref/Uniref50/2017_8/uniref50.fasta -num_threads 6<br>
+                     <br><br>
+                     > sbtach programa.sh
+clusterHowTo.sbatch3: |
+                     Contenido del fichero <i>programa.sh</i>:
+                     <br><br>
+                     #En este programa se va a hacer uso de un solo nodo, se van a usar varios cores y además se van a ejecutar varias iteraciones del mismo programa.
+                     #!/bin/bash <br>
+                     #SBATCH -o /home/user/outputs/programa_output_%A_%a.out <br>
+                     #SBATCH -e /home/user/errors/programa_error_%A_%a.out <br>
+                     #SBATCH -p UPO <br>
+                     #SBATCH -N 1 <br>
+                     #SBATCH -n 6 <br>
+                     #SBATCH -J user_task_sbatch <br>
+                     #SBATCH --array=1-60%15 <br>
+                     blastp -query /home/username/data_$SLURM_ARRAY_TASK_ID.fasta -db /mnt/beegfs/DB/uniref/Uniref50/2017_8/uniref50.fasta -num_threads 6<br>
+                     <br><br>
+                     > sbtach programa.sh
+clusterHowTo.text16: |
+                    <b>Nota:</b> Si va a ejecutar una tarea que puede llevar tiempo es una buena práctica incluir en el fichero <i>programa.sh</i> algunos "puntos de depuración" para saber en que estado se encuentra la ejecución.
+clusterHowTo.sbatch4: |
+                    ......<br>
+                    # Se imprime el ID del trabajo que se está ejecutando; siguiendo el ejemplo anterior irá de 1 a 16. <br>
+                    echo "Mi trabajo ID: " $SLURM_ARRAY_TASK_ID <br>
+                    ......<br>
+                    echo "Paso 1 Iniciado" >> my_program_status.txt<br>
+                    ......<br>
+                    echo "Paso 1 Finalizado" >> my_program_status.txt<br>
+                    ......<br>
+clusterHowTo.text17: Para detener una tarea se puede usar el comando <b>scancel</b>. Este comando nos permite terminar trabajos de diferentes maneras; si se ha especificado un nombre a la tarea se puede cancelar usando el nombre asignado, en otro caso habrá que indicar el identificador de la tarea. 
+clusterHowTo.scancel: |
+                      #Para cancelar una tarea por su nombre. <br>
+                      > scancel -n user_task_sbatch <br><br>
+                      #Cancela el trabajo con ID 1234.<br>
+                      > scancel 1234
+                      
+clusterHowTo.text18: A través de <b>squeue</b> se puede conocer el estado actual de las tareas que se están ejecutando en el cluster. También permite visualizar sólo las tareas que pertenecen a un usuario en concreto (u) o las tareas de una partición en particular (p).
+clusterHowTo.squeue: |
+                     #Muestra las tareas en la partición UPO del usuario "nombreUsuario".<br>
+                     > squeue -p UPO -u nombreUsuario <br><br>
+                     #Muestra la información de las tareas especificadas. <br>
+                     > squeue --name user_task_run,user_task_run2
+clusterHowTo.extraInfo: <b>Nota:</b> Si necesita una solución personalizada contacte con nosotros en la dirección
+                     

@@ -1,0 +1,80 @@
+<table class='table table-striped'>
+    <thead>
+        <th>{{'ID'|trans}}</th>
+        <th>{{'label.isClusterUser'|trans}}</th>
+        <th>{{'label.isActiveUser'|trans}}</th>
+        <th>{{'label.isInDistributionList'|trans}}</th>
+        <th>{{'label.name'|trans}}</th>
+        <th>{{'label.lastname'|trans}}</th>
+        <th>{{'label.position'|trans}}</th>
+        <th>{{'label.email'|trans}}</th>
+        <th>{{'label.phone'|trans}}</th>
+        <th>{{'label.username.short'|trans}}</th>
+        <th>{{'label.usingTime'|trans}}</th>
+        <th>{{'label.centre'|trans}}</th>
+        <th>{{'label.department'|trans}}</th>
+        <th>{{'label.group'|trans}}</th>
+        <th>{{'label.softwareSpecifications'|trans}}</th>
+        <th>{{'label.description.short'|trans}}</th>
+    </thead>
+    <tbody>
+        {% if users|length == 0%}
+            <tr>
+                <td colspan='15' style='text-align:center;'>{{'noUsers'|trans}}</td>
+            </tr>
+        {%else%}
+            {% for user in users %}
+                <tr>
+                    <td>{{user.id}}</td>
+
+                    {% set clusterUser = 'isClusterUser_0'|trans %}
+                    {% if user.isClusterUser is defined and user.isClusterUser == 1 %}
+                        {% set clusterUser = 'isClusterUser_1'|trans %}
+                    {% endif %}
+                    <td>{{clusterUser}}</td>
+
+                    {% set isActive = 'isUserActive_0'|trans %}
+                    {% if user.isActive is defined and user.isActive == 1 %}
+                        {% set isActive = 'isUserActive_1'|trans %}
+                    {% endif %}
+                    <td>{{isActive}}</td>
+                    
+                    {% set isInDistributionList = 'isInDistributionList_0'|trans %}
+                    {% if user.isInDistributionList is defined and user.isInDistributionList == 1 %}
+                        {% set isInDistributionList = 'isInDistributionList_1'|trans %}
+                    {% endif %}
+                    <td>{{isInDistributionList}}</td>
+
+                    <td>{{user.name}}</td>
+                    <td>{{user.lastname}}</td>
+                    <td>{{user.position}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.phone}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.usingTime.code | trans}}</td>
+
+                    {% set centre = '' %}
+                    {% if user.centre is defined and user.centre is not null %}
+                        {% set centre = user.centre.name %}
+                    {% endif %}
+                    <td>{{centre}}</td>
+
+                    {% set department = '' %}
+                    {% if user.department is defined and user.department is not null %}
+                        {% set department = user.department.name %}
+                    {% endif %}
+                    <td>{{department}}</td>
+
+                    {% set group = '' %}
+                    {% if user.group is defined and user.group is not null %}
+                        {% set group = user.group.name %}
+                    {% endif %}
+                    <td>{{group}}</td>
+
+                    <td>{{user.softwareSpecifications}}</td>
+                    <td>{{user.description}}</td>
+                </tr>
+            {% endfor %}
+        {%endif%}
+    </tbody>
+</table>

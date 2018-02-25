@@ -1,0 +1,168 @@
+index:
+    path: /
+    defaults: { _controller: AppBundle:Default:index}
+    
+registrationRegister:
+    path: /registration
+    methods: [POST]
+    defaults: { _controller: AppBundle:User:registrationRegister}
+
+## Admin login
+admin_index:
+    path: /admin
+    defaults: { _controller: AppBundle:Administration:index}
+## Login
+login_route:
+    path: /admin/login
+    defaults: { _controller: AppBundle:Security:login}
+## Check login credentials
+login_check:
+    path: /login_check
+## logout
+logout:
+    path: /logout
+    
+    
+##############################################################################
+######################   ADMINISTRATION    ###################################
+##############################################################################
+
+## Get registered & cluster users
+administration_get_users_table:
+    path: /admin/getUsersJson/{clusterStatus}/{userStatus}
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:getUsersJson, clusterStatus: null, userStatus: null }
+## verify a new registered user
+adminstration_user_verification:
+    path: /admin/userVerification/{userId}
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:userVerification}
+## Edit an existing user
+adminstration_user_edition:
+    path: /admin/userEdition/{userId}
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:userEdition}
+## Change the cluster status
+adminstration_user_enable:
+    path: /admin/userStatus/{userId}/{status}
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:userStatus}
+## Change the distribution list status
+adminstration_distributionList_enable:
+    path: /admin/distributionListStatus/{userId}/{status}
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:distributionListStatus}
+
+##Get the existing users by different fields
+adminstration_getUsers_by:
+    path: /admin/getUsersBy/{cmd}/{id}
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:getUsersBy}
+
+## Get existing centres
+administration_get_centres_table:
+    path: /admin/getCentresJson
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:getCentersJson}
+## Create new centre
+adminstration_centre_creation:
+    path: /admin/centreCreation
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:centreCreation}
+## Edit an existing centre
+adminstration_centre_edition:
+    path: /admin/centreEdition/{centreId}
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:centreEdition}
+## Delete an existing centre
+adminstration_centre_deletion:
+    path: /admin/centreDeletion/{centreId}
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:centreDeletion}
+
+    
+## Get existing departments
+administration_get_departments_table:
+    path: /admin/getDepartmentsJson
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:getDepartmentsJson}
+## Create new department
+adminstration_department_creation:
+    path: /admin/departmentCreation
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:departmentCreation}
+## Edit an existing department
+adminstration_department_edition:
+    path: /admin/departmentEdition/{departmentId}
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:departmentEdition}
+## Delete an existing department
+adminstration_department_deletion:
+    path: /admin/departmentDeletion/{departmentId}
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:departmentDeletion}
+
+
+## Get existing groups
+administration_get_groups_table:
+    path: /admin/getGroupsJson
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:getGroupsJson}
+## Create new group
+adminstration_group_creation:
+    path: /admin/groupCreation
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:groupCreation}
+## Edit an existing group
+adminstration_group_edition:
+    path: /admin/groupEdition/{groupId}
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:groupEdition}
+## Delete an existing group
+adminstration_group_deletion:
+    path: /admin/groupDeletion/{groupId}
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:groupDeletion}
+
+## Get existing leaders
+administration_get_leaders_table:
+    path: /admin/getLeadersJson
+    methods: [GET]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:getLeadersJson}
+## Create new leader
+adminstration_leader_creation:
+    path: /admin/leaderCreation
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:leaderCreation}
+## Edit an existing leader
+adminstration_leader_edition:
+    path: /admin/leaderEdition/{leaderId}
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:leaderEdition}
+## Delete an existing leader
+adminstration_leader_deletion:
+    path: /admin/leaderDeletion/{leaderId}
+    methods: [POST]
+    condition: "request.isXmlHttpRequest()"
+    defaults: { _controller: AppBundle:Administration:leaderDeletion}
