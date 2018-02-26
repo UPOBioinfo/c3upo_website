@@ -65,11 +65,15 @@ class UserRepository extends EntityRepository{
         
         switch($cmd){
             case 'distributionList':
-                $cmd = 'DEL c3upo '.$userSelected->getEmail();
+                $cmd = 'Select email '.$userSelected->getEmail() ." > click on 'Borrar direcciones de emails seleccionados'";
                 if($userSelected->getIsInDistributionList()){
-                    $cmd = 'ADD c3upo '.$userSelected->getEmail();
+                    $cmd = 'Add an user <b>'.$userSelected->getEmail().'</b>';
+                    $cmd .= '<br><br>Search email <b>'.$userSelected->getEmail().'</b> in the list and click on it';
+                    $cmd .= '<br><br>Nombre <b>'.$userSelected->getName().' '.$userSelected->getLastname()."</b> and click on <b>'Actualizar'</b>";
                 }
                 $command = "URL: http://listas.upo.es/wws/home";
+                $command .= "<br><br>Click on <b>'admin' c3upo</b>";
+                $command .= "<br><br>Click on <b>'administrador de subscriptores'</b>";
                 $command .= "<br><br>$cmd";
                 break;
                 
