@@ -204,11 +204,21 @@ clusterInfo.intro: "Introducción:"
 clusterInfo.text1: El C3UPO dispone de un cluster de supercomputación, el cual ofrece servicios a diferentes grupos de investigación para facilitar cálculos científicos.
 clusterInfo.text2: El cluster ofrece herramientas específicas para los diferentes grupos de investigación, de esta forma se facilita el trabajo al investigador ya que puede trabajar en un entorno sin necesidad de migrar datos de un lugar a otro.
 clusterInfo.hardware: "Características hardware:"
-clusterInfo.nodes: 14 nodos de cálculo 
-clusterInfo.cores: 336 (14 nodos x 24 cores/nodo) cores de cáculo
+clusterInfo.nodes: El cluster cuenta con 31 nodos de cálculo 
+clusterInfo.cores: Esos 31 nodos corresponden a 1032 cores de cáculo
+clusterInfo.cores1: 13 nodos x 24 cores/nodo = 312 cores
+clusterInfo.cores2: 18 nodos x 40 cores/nodo = 720 cores
 clusterInfo.connection: ?? Infiniband QDR/FDR interconnection network. - - conectados como (Infiniband DDR a 20Gbit/seg)???
-clusterInfo.memory: 128GB de memoria RAM
-clusterInfo.capacityShared: Capacidad de 4.5TB en un sistema de ficheros compartidos Beegfs
+clusterInfo.memory: "La memoria RAM de los nodos es la siguiente:"
+clusterInfo.memory1: Nodos nodo01-nodo12 tienen 62GB de RAM.
+clusterInfo.memory2: Nodo nodo13 tiene 125GB de RAM.
+clusterInfo.memory3: Nodos nodo14-nodo31 tienen 92GB de RAM.
+clusterInfo.capacity: "Todos los nodos tienen una carpeta scratch con capacidad de almacenamiento de: "
+clusterInfo.capacity1: Nodos nodo01-nodo12 tienen una capacidad de almacenamiento de 207GB
+clusterInfo.capacity2: Nodo nodo13 tiene una capacidad de almacenamiento de 239GB
+clusterInfo.capacity3: Nodos nodo14-nodo31 tienen una capacidad de almacenamiento de 7,3TB
+clusterInfo.capacityExtra: "Los nodos nodo14-nodo31 tienen una carpeta scratch en discos ssd llamada ssdcratch con una capacidad de 388GB"
+clusterInfo.capacityShared: Capacidad de 25TB en un sistema de ficheros compartidos Beegfs
 clusterInfo.queue: SLURM (Simple Linux Utility for Resource Management) como sistema de colas
 clusterInfo.os: Sistema Operativo CentOS Linux 7.2
 clusterInfo.power: ?? xx TFlops de potencia de cálculo
@@ -227,6 +237,24 @@ clusterInfo.parallel: Sistema de paralelización
 clusterInfo.OPENMPI: OpenMPI
 clusterInfo.extraInfo: Si tiene necesidades específicas no dude en contactar con nosotros a través de la dirección
 clusterInfo.extraInfoTemp: <b>Nota:</b> En breve se instalarán los programas requeridos por los usuarios del cluster.
+clusterInfo.slurm: Sistemas de colas slurm
+clusterInfo.slurm1: "El cluster cuenta con los siguientes sistemas de colas:"
+clusterInfo.slurm.day: Cola <b>diaria</b>. Los trabajos que se ejecuten en esta cola pueden durar como máximo un día y pueden hacer uso de 120 cores.
+clusterInfo.slurm.day.example: srun -n1 -N1 -p day hostname
+clusterInfo.slurm.week: Cola <b>semanal</b>. Los trabajos que se ejecuten en esta cola pueden durar como máximo una semana y pueden hacer uso de 80 cores.
+clusterInfo.slurm.week.example: srun -n1 -N1 -p week hostname
+clusterInfo.slurm.week2: cola <b>quincenal</b>. Los trabajos que se ejecuten en esta cola pueden durar como máximo 15 días y pueden hacer uso de 80 cores.
+clusterInfo.slurm.week2.example: srun -n1 -N1 -p week2 hostname
+clusterInfo.slurm.month: Cola <b>mensual</b>. Los trabajos que se ejecuten en esta cola pueden durar como máximo un mes y pueden hacer uso de 40 cores.
+clusterInfo.slurm.month.example: srun -n1 -N1 -p month hostname
+clusterInfo.constraint: Características de los nodos
+clusterInfo.constraint1: Los nodos tienen asociados unas características para en caso de que sea necesario poder utilizar aquellos nodos que satisfagan nuestras necesidades.
+clusterInfo.constraint.set1: "<b>SET1</b>: Esta característica hace referencia a los nodos nodo01-nodo07"
+clusterInfo.constraint.set2: "<b>SET2</b>: Esta característica hace referencia a los nodos nodo014-nodo07"
+clusterInfo.constraint.gaussian: "<b>Gaussian</b>: Esta característica hace referencia a los nodos nodo09-nodo12, son nodos con mayor capacidad de almacenamiento"
+clusterInfo.constraint.gpu: "<b>GPU</b>: Esta característica hace referencia al nodo nodo13, este nodo cuenta con GPU"
+clusterInfo.constraint.web: "<b>WEB</b>: Esta característica hace referencia a los nodos que se encargarán de realizar las peticiones solicitadas por el servidor web, nodo nodo08"
+clusterInfo.constraint.example: srun --constraint="SET1" hostname
 
 ##### How to section
 clusterHowTo.intro: Cómo hacer uso del cluster de supercomputación
@@ -265,11 +293,11 @@ clusterHowTo.slurm: A continuación se van a detallar algunos de los comandos m�
 clusterHowTo.text9: "Para ejecutar tareas en el cluster tiene principalmente 3 métodos:"
 clusterHowTo.text10: 1. Usar el comando <b>srun</b>
 clusterHowTo.text11: Con el comando <b>srun</b> se pueden ejecutar tareas en paralelo. Con este comando se puede especificar, entre otras cosas, en qué cola queremos añadir nuestro trabajo (p), cuántas veces se necesita que se ejecute la tarea (n) y en cuántos nodos (N). Además, también podemos darle un nombre al trabajo para poder localizar posteriormente con mayor facilidad (J).
-clusterHowTo.run: "> srun -n2 -N2 -p=UPO -J=user_task_run --label hostname"
+clusterHowTo.run: "> srun -n2 -N2 -p day -J=user_task_run --label hostname"
 clusterHowTo.text12: 2. Usar el comando <b>salloc</b> 
 clusterHowTo.text13: Con el comando <b>salloc</b> se reserva un espacio en un conjunto de nodos y una vez hecha la reserva se ejecutan los comandos necesarios. Es importante tener en mente que para poder hacer un uso correcto del cluster y aprovechar los recursos los comandos hay que ejecutarlos haciendo uso de <b>srun</b>. Una vez que haya llevado a cabo las tareas hay que liberar los recursos reservados, para ello hay que ejecutar el comando <b>exit</b> o no serán liberados hasta salir del terminal. Al igual que con el comando <b>srun</b> se puede especificar en que cola queremos lanzar nuestro trabajo (p), cuántos nodos queremos reservar (N), en cuantos hilos queremos que se divida la tarea (n) y el nombre que se le quiere dar a la tarea (J). Una vez hemos reservado el espacio podemos lanzar srun con los comandos que necesitemos, sin necesidad de volver a especificar los valores.
 clusterHowTo.salloc: | 
-                     > salloc -n2 -N2 -p=UPO -J=user_task_salloc -t=10
+                     > salloc -n2 -N2 -p day -J=user_task_salloc -t=10
                      > srun --label hostname
                      > exit
 clusterHowTo.text14: 3. Usar el comando <b>sbatch</b>

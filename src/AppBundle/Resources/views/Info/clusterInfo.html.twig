@@ -11,34 +11,84 @@
         <ul>
             <li>{{'clusterInfo.nodes'|trans}}</li>
             <li>{{'clusterInfo.cores'|trans}}</li>
+            <ul>
+                <li>{{'clusterInfo.cores1'|trans}}</li>
+                <li>{{'clusterInfo.cores2'|trans}}</li>
+            </ul>
 {#            <li>{{'clusterInfo.connection'|trans}}</li>#}
             <li>{{'clusterInfo.memory'|trans}}</li>
+            <ul>
+                <li>{{'clusterInfo.memory1'|trans}}</li>
+                <li>{{'clusterInfo.memory2'|trans}}</li>
+                <li>{{'clusterInfo.memory3'|trans}}</li>
+            </ul>
+            <li>{{'clusterInfo.capacity'|trans}}</li>
+            <ul>
+                <li>{{'clusterInfo.capacity1'|trans}}</li>
+                <li>{{'clusterInfo.capacity2'|trans}}</li>
+                <li>{{'clusterInfo.capacity3'|trans}}</li>
+            </ul>
 {#            <li>{{'clusterInfo.power'|trans}}</li>#}
+            <li>{{'clusterInfo.capacityExtra'|trans}}</li>
             <li>{{'clusterInfo.capacityShared'|trans}}</li>
             <li>{{'clusterInfo.queue'|trans}}</li>
             <li>{{'clusterInfo.os'|trans}}</li>
         </ul>
         <br>
+        <p><b>{{'clusterInfo.slurm'|trans}}</b></p>
+        <p>{{'clusterInfo.slurm1'|trans}}</p>
+        <ul>
+            <li>
+                {{'clusterInfo.slurm.day'|trans|raw}}
+                <div class="commandElement">
+                    <div class="well">&gt;{{'clusterInfo.slurm.day.example'|trans}}</div>
+                </div>
+            </li>
+            <li>
+                {{'clusterInfo.slurm.week'|trans|raw}}
+                <div class="commandElement">
+                    <div class="well">&gt;{{'clusterInfo.slurm.week.example'|trans}}</div>
+                </div>
+            </li>
+            <li>
+                {{'clusterInfo.slurm.week2'|trans|raw}}
+                <div class="commandElement">
+                    <div class="well">&gt;{{'clusterInfo.slurm.week2.example'|trans}}</div>
+                </div>
+            </li>
+            <li>
+                {{'clusterInfo.slurm.month'|trans|raw}}
+                <div class="commandElement">
+                    <div class="well">&gt;{{'clusterInfo.slurm.month.example'|trans}}</div>
+                </div>
+            </li>
+        </ul>
+        <br>
+        <p><b>{{'clusterInfo.constraint'|trans}}</b></p>
+        <p>{{'clusterInfo.constraint1'|trans}}</p>
+        <ul>
+            <li>
+                {{'clusterInfo.constraint.set1'|trans|raw}}
+            </li>
+            <li>
+                {{'clusterInfo.constraint.set2'|trans|raw}}
+            </li>
+            <li>
+                {{'clusterInfo.constraint.gaussian'|trans|raw}}
+            </li>
+            <li>
+                {{'clusterInfo.constraint.gpu'|trans|raw}}
+            </li>
+            <li>
+                {{'clusterInfo.constraint.web'|trans|raw}}
+            </li>
+        </ul>
+        <div class="commandElement">
+            <div class="well">&gt;{{'clusterInfo.constraint.example'|trans}}</div>
+        </div>
+        <br>
         <p><b>{{'clusterInfo.software'|trans}}</b></p>
         <ul>
-            {#<li>
-                <b>{{'clusterInfo.math'|trans}}</b>
-                <ul>
-                    <li>GAP - v4.7.2</li>
-                </ul>
-            </li>
-            <li>
-                <b>{{'clusterInfo.physic'|trans}}</b>
-                <ul>
-                    <li>Geant4</li>
-                </ul>
-            </li>
-            <li>
-                <b>{{'clusterInfo.chemistry'|trans}}</b>
-                <ul>
-                    <li>​Gamess</li>
-                </ul>
-            </li>#}
             <li>
                 <b>{{'clusterInfo.bioinformatics'|trans}}</b>
                 <ul>
